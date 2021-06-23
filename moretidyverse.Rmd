@@ -1,7 +1,7 @@
 ---
 title: "More Tidyverse"
 description: |
-  A new article created using the Distill format.
+  Take the time to explore the lesser known functions and packages of the Tidyverse
 author:
   - name: Murray Cadzow
     url: 
@@ -18,7 +18,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
@@ -27,21 +27,21 @@ Description: Take the time to explore the lesser known functions and packages of
 Learning objectives
 
 - What packages are in the tidyverse
-- 
 - Understand functional programming
-    - purrr
-    - dplyr::across
 
 
 
-```{r, echo = TRUE}
-head(mtcars)
-```
+
+
+
+
+> The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
+> -  https://www.tidyverse.org
 
 
 ## Core Tidyverse
 
-```{r, echo = TRUE, message = TRUE}
+```{r, message = TRUE}
 library(tidyverse)
 ```
 
@@ -49,12 +49,12 @@ library(tidyverse)
 
 ### tibble
 
-```{r}
+```{r, echo = FALSE}
 knitr::include_graphics("images/tibble.png")
 ```
 
 
-- `tibble::tribble`
+`tibble::tribble` is a useful function if you want to manually input a small amount of data.
 
 ```{r, echo = TRUE}
 tibble::tribble( ~column1, ~column2, ~column3,
@@ -64,16 +64,45 @@ tibble::tribble( ~column1, ~column2, ~column3,
 
 
 
-- `tibble::glimpse`
+`tibble::glimpse` is similar to `str` but can be embedded in pipelines as it invisibly returns the original data.
+
+```{r}
+tibble::glimpse(mtcars)
+```
 
 
+### [ggplot2](https://ggplot2.tidyverse.org)
 
-### ggplot2
-  
-- `ggplot2::theme_set`
-- `ggplot2::ggplot_build`
+```{r, echo = FALSE}
+knitr::include_graphics("images/ggplot2.png")
+```
 
-### dplyr
+The majority of `ggplot2` functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There are two however that can be very helpful to know about.
+
+
+`ggplot2::theme_set` allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.
+
+
+`ggplot2::ggplot_build` is the function that allows you pull out the data that is being used to create a plot. Each component of a ggplot is stored as an element of a list and 
+
+```{r plot_example}
+p <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + geom_point() + geom_smooth(method = 'lm')
+
+plot(p)
+```
+
+```{r}
+names(ggplot2::ggplot_build(p))
+
+(ggplot2::ggplot_build(p)[["data"]])
+```
+
+### [dplyr](https://dplyr.tidyverse.org)
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/dplyr.png")
+```
  
 - `dplyr::transmute`
 - `dplyr::relocate`
@@ -81,7 +110,12 @@ tibble::tribble( ~column1, ~column2, ~column3,
 - `dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with`
 - `dplyr::case_when`
 
-### tidyr
+### [tidyr](https://tidyr.tidyverse.org)
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/tidyr.png")
+```
 
 - `tidyr::nest`
 - `tidyr::unnest`
@@ -93,21 +127,40 @@ tibble::tribble( ~column1, ~column2, ~column3,
 
 ### forcats
 
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/forcats.png")
+```
+
 -`forcats::relevel`
 - `forcats::reorder`
 - `forcats::recode`
 
 ### stringr
 
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/stringr.png")
+```
 - `stringr::str_remove`
 - `stringr::extract`
 
 ### readr
 
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/readr.png")
+```
+
 - `readr::read_csv_chunked`
 - `readr::parse_number`
 
 ### purrr
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/purrr.png")
+```
 
 - `purrr::map`
 - `purrr::walk`
