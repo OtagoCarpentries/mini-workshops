@@ -16,14 +16,67 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web. 
-
-Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+Time: 90 minutes
 
 
 
+Description: This workshop will extend your understanding of R and cover how to interact with non-data.frame structured data such as vectors, matrices and lists. We'll also look at creating your own functions and loops.
+
+Learning objectives:
+
+- data structures
+    - homogenous structures
+        - vectors
+        - matrix
+    - heterogenous structures
+        - lists
+        - data.frame/tibble
+- create functions
+- create loops
+- creating/running scripts
 
 
+## Data structures
+
+Heavy reliance on content in http://adv-r.had.co.nz/Data-structures.html
+
+
+### Structures
+
+Homogenous: vector, matrix, array
+Heterogenous: list, data.frame (tibble), data.table(?)
+
+- `str`
+- `class`
+- `attr`
+- `length`
+- `dim`
+
+
+### Atomics
+
+- numeric
+- logical
+- character
+- 
+
+## Functions
+
+```{r, eval = FALSE}
+name <- function(variables) {
+  
+}
+```
+
+
+## Loops
+
+
+```{r, eval = FALSE}
+for (variable in vector) {
+  
+}
+```

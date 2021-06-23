@@ -17,6 +17,9 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+Time: 90 min
+
+Description: This session will cover useful code snippets that are designed to improve your overall experience doing computational research. This will include how to customise your BASH and R environments, useful keyboard short cuts, and short pieces of code to do common tasks e.g. read a directory of files into R.
 
 
 # R
@@ -42,3 +45,45 @@ In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if 
 
 5 # only this line will evaluate
 ```
+
+
+
+## Workflow advice
+
+- here
+- janitor
+- usethis
+- Rprojects
+
+
+
+# Bash
+
+## Configuration
+
+
+### .bashrc or .zshrc 
+
+BASH is a common UNIX commandline or terminal, but for MacOS the default is zsh.
+
+To find out which shell you are using enter this command:
+```
+echo $0
+```
+
+Creating your .bashrc or .zsh
+
+- path
+- alias
+- prompt
+- ssh config
+- tmux
+
+
+# Python
+
+Virtual environments
+- conda
+    - conda create
+    - conda activate
+    - conda deactivate

@@ -94,7 +94,7 @@ plot(p)
 ```{r}
 names(ggplot2::ggplot_build(p))
 
-(ggplot2::ggplot_build(p)[["data"]])
+ggplot2::ggplot_build(p)[["data"]] %>% tibble::glimpse()
 ```
 
 ### [dplyr](https://dplyr.tidyverse.org)
@@ -153,7 +153,15 @@ knitr::include_graphics("images/readr.png")
 ```
 
 - `readr::read_csv_chunked`
-- `readr::parse_number`
+
+`readr::parse_number` is an extremely useful function to know about if you are reading data into R that you know is numerical in nature but might contain extra characters such as units.
+
+```{r}
+text_to_parse <- c(" 0.4m", "-6", "a5", "1E-2", "24%", "3e2")
+
+readr::parse_number(text_to_parse)
+```
+
 
 ### purrr
 

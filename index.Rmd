@@ -20,5 +20,6 @@ This repository contains a collection of mini workshops that are designed to be 
 
 Workshop sites can be found under the workshops menu and are available for:
 
-- Delving deeper into R
-- More Tidyverse
+- [Delving deeper into R](delvingdeeper.html)
+- [More Tidyverse](moretidyverse.html)
+- [Useful code snippets for everyday tasks](usefulcodesnippets.html)
