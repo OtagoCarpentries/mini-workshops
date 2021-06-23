@@ -1,0 +1,44 @@
+---
+title: "Useful code snippets for everyday tasks"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Murray Cadzow 
+    url: 
+    affiliation: University of Otago
+    affiliation_url: 
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# R
+
+## RMarkdown
+
+In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if you want to selectively run lines within a rmd code chunk you can exclude them explicitly:
+
+````
+```{r, eval = c(-1,-3)}`r ''`
+1
+
+3
+
+5 # only this line will evaluate
+```
+````
+
+```{r, eval = c(-1,-3), echo = TRUE}
+1
+
+3
+
+5 # only this line will evaluate
+```
