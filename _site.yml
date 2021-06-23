@@ -13,7 +13,8 @@ navbar:
           href: delvingdeeper.html
         - text: "More Tidyverse"
           href: moretidyverse.html
-
+        - text: "Useful Code Snippets"
+          href: usefulcodesnippets.html
     - text: "About"
       href: about.html
 output: distill::distill_article

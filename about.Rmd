@@ -8,3 +8,4 @@ description: |
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+This site is a collection of mini workshops that are designed to be 1-4 hours in length.
