@@ -1,0 +1,136 @@
+---
+title: "More Tidyverse"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Murray Cadzow
+    url: 
+    affiliation: University of Otago
+    affiliation_url:
+  - name: Matt Bixley
+    url: 
+    affiliation: NeSI
+    affiliation_url:
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+Description: Take the time to explore the lesser known functions and packages of the Tidyverse. Learn about how to access googlesheets, use times/dates, manipulate text, use functional programming to replace loops, and more.
+
+Learning objectives
+
+- What packages are in the tidyverse
+- 
+- Understand functional programming
+    - purrr
+    - dplyr::across
+
+
+
+```{r, echo = TRUE}
+head(mtcars)
+```
+
+
+## Core Tidyverse
+
+```{r, echo = TRUE, message = TRUE}
+library(tidyverse)
+```
+
+
+
+### tibble
+
+```{r}
+knitr::include_graphics("images/tibble.png")
+```
+
+
+- `tibble::tribble`
+
+```{r, echo = TRUE}
+tibble::tribble( ~column1, ~column2, ~column3,
+                 "a", 1, TRUE,
+                 "b", 2, FALSE)
+```
+
+
+
+- `tibble::glimpse`
+
+
+
+### ggplot2
+  
+- `ggplot2::theme_set`
+- `ggplot2::ggplot_build`
+
+### dplyr
+ 
+- `dplyr::transmute`
+- `dplyr::relocate`
+- `dplyr::across`
+- `dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with`
+- `dplyr::case_when`
+
+### tidyr
+
+- `tidyr::nest`
+- `tidyr::unnest`
+- `tidyr::separate`/`tidyr::separate_rows`
+- `tidyr::unite`
+- `tidyr::crossing`
+- `tidyr::drop_na`
+- `tidyr::replace_na`
+
+### forcats
+
+-`forcats::relevel`
+- `forcats::reorder`
+- `forcats::recode`
+
+### stringr
+
+- `stringr::str_remove`
+- `stringr::extract`
+
+### readr
+
+- `readr::read_csv_chunked`
+- `readr::parse_number`
+
+### purrr
+
+- `purrr::map`
+- `purrr::walk`
+- `purrr::transpose`
+- `purrr::keep`/`purrr::discard`/`purrr::pluck`
+
+
+
+
+
+## Extra Tidyverse
+
+- readxl
+- googlesheets4
+- lubridate
+    - `lubridate::ymd`
+- hms
+- magrittr
+    - `magrittr::%$%`
+    - `magrittr::%T%`
+- glue
+    - `glue::glue`
+- dtplyr
+- dbplyr
+
+

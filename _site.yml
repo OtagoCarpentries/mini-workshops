@@ -1,0 +1,19 @@
+name: "mini-workshops"
+title: "Mini-Workshops"
+description: |
+  Mini-Workshops
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Workshops"
+      menu:
+        - text: "Delving Deeper into R"
+          href: delvingdeeper.html
+        - text: "More Tidyverse"
+          href: moretidyverse.html
+
+    - text: "About"
+      href: about.html
+output: distill::distill_article

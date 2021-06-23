@@ -1,0 +1,57 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-06-23T14:42:56+12:00"
+    },
+    {
+      "path": "delvingdeeper.html",
+      "title": "Delving Deeper into R",
+      "description": "A new article created using the Distill format.\n",
+      "author": [
+        {
+          "name": "Murray Cadzow",
+          "url": "https://github.com/murraycadzow"
+        },
+        {
+          "name": "Matt Bixley",
+          "url": {}
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\n\n\n\n",
+      "last_modified": "2021-06-23T14:42:57+12:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Mini-Workshops",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-06-23T14:42:57+12:00"
+    },
+    {
+      "path": "moretidyverse.html",
+      "title": "More Tidyverse",
+      "description": "A new article created using the Distill format.\n",
+      "author": [
+        {
+          "name": "Murray Cadzow",
+          "url": {}
+        },
+        {
+          "name": "Matt Bixley",
+          "url": {}
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\n\nContents\nCore Tidyverse\ntibble\nggplot2\ndplyr\ntidyr\nforcats\nstringr\nreadr\npurrr\n\nExtra Tidyverse\n\nDescription: Take the time to explore the lesser known functions and packages of the Tidyverse. Learn about how to access googlesheets, use times/dates, manipulate text, use functional programming to replace loops, and more.\nLearning objectives\nWhat packages are in the tidyverse\n\nUnderstand functional programming\npurrr\ndplyr::across\n\n\n\nhead(mtcars)\n\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\nCore Tidyverse\n\n\nlibrary(tidyverse)\n\n\n── Attaching packages ───────────────────────────── tidyverse 1.3.1 ──\n✓ ggplot2 3.3.3     ✓ purrr   0.3.4\n✓ tibble  3.1.2     ✓ dplyr   1.0.6\n✓ tidyr   1.1.3     ✓ stringr 1.4.0\n✓ readr   1.4.0     ✓ forcats 0.5.1\n── Conflicts ──────────────────────────────── tidyverse_conflicts() ──\nx dplyr::filter() masks stats::filter()\nx dplyr::lag()    masks stats::lag()\n\ntibble\n\n\n\ntibble::tribble\n\n\ntibble::tribble( ~column1, ~column2, ~column3,\n                 \"a\", 1, TRUE,\n                 \"b\", 2, FALSE)\n\n\n# A tibble: 2 x 3\n  column1 column2 column3\n  <chr>     <dbl> <lgl>  \n1 a             1 TRUE   \n2 b             2 FALSE  \n\ntibble::glimpse\nggplot2\nggplot2::theme_set\nggplot2::ggplot_build\ndplyr\ndplyr::transmute\ndplyr::relocate\ndplyr::across\ndplyr::starts_with/dplyr::contains/dplyr::ends_with\ndplyr::case_when\ntidyr\ntidyr::nest\ntidyr::unnest\ntidyr::separate/tidyr::separate_rows\ntidyr::unite\ntidyr::crossing\ntidyr::drop_na\ntidyr::replace_na\nforcats\n-forcats::relevel - forcats::reorder - forcats::recode\nstringr\nstringr::str_remove\nstringr::extract\nreadr\nreadr::read_csv_chunked\nreadr::parse_number\npurrr\npurrr::map\npurrr::walk\npurrr::transpose\npurrr::keep/purrr::discard/purrr::pluck\nExtra Tidyverse\nreadxl\ngooglesheets4\nlubridate\nlubridate::ymd\n\nhms\nmagrittr\nmagrittr::%$%\nmagrittr::%T%\n\nglue\nglue::glue\n\ndtplyr\ndbplyr\n\n\n\n",
+      "last_modified": "2021-06-23T14:42:58+12:00"
+    }
+  ],
+  "collections": []
+}
