@@ -1,7 +1,7 @@
 ---
 title: "Mini-Workshops"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  A collection of mini workshops
 site: distill::distill_website
 ---
 
@@ -16,3 +16,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+This repository contains a collection of mini workshops that are designed to be 1-4 hours in length
+
+Workshop sites can be found under the workshops menu and are available for:
+
+- Delving deeper into R
+- More Tidyverse
