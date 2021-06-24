@@ -23,3 +23,5 @@ Workshop sites can be found under the workshops menu and are available for:
 - [Delving deeper into R](delvingdeeper.html)
 - [More Tidyverse](moretidyverse.html)
 - [Useful code snippets for everyday tasks](usefulcodesnippets.html)
+- [Creating websites with GitHub](githubwebsites.html)
+- [Workflow Languages](workflowlanguages.html)

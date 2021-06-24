@@ -15,6 +15,10 @@ navbar:
           href: moretidyverse.html
         - text: "Useful Code Snippets"
           href: usefulcodesnippets.html
+        - text: "Creating websites with GitHub"
+          href: githubwebsites.html
+        - text: "Workflow Languages"
+          href: workflowlanguages.html
     - text: "About"
       href: about.html
 output: distill::distill_article
