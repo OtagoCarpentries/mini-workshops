@@ -1,0 +1,33 @@
+---
+title: "Creating Websites with GitHub"
+description: |
+  Create a website using GitHub Pages.
+author:
+  - name: Murray Cadzow 
+    url: 
+    affiliation: University of Otago
+    affiliation_url: 
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Time: 120 min
+
+Description: This workshop will introduce you to the world of using creating simple websites using the markdown language. A it will involve a practical application of version control principles which can be applied to other code as well.
+
+Creating up a github account
+Creating a repository
+Introduction to markdown syntax for formatting
+Creating a simple webpage with markdown
+Modifying pages and tracking changes
+How to use Github for collaboration
+
+- create github account
+- example template: https://academicpages.github.io
