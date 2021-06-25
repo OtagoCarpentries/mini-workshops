@@ -2115,18 +2115,25 @@ Workshops
 <ul>
 <li><a href="#core-tidyverse">Core Tidyverse</a>
 <ul>
-<li><a href="#tibble">tibble</a></li>
+<li><a href="#tibble"><span>tibble</span></a></li>
 <li><a href="#ggplot2"><span>ggplot2</span></a></li>
 <li><a href="#dplyr"><span>dplyr</span></a></li>
 <li><a href="#tidyr"><span>tidyr</span></a></li>
-<li><a href="#forcats">forcats</a></li>
-<li><a href="#stringr">stringr</a></li>
-<li><a href="#readr">readr</a></li>
-<li><a href="#purrr">purrr</a></li>
+<li><a href="#forcats"><span>forcats</span></a></li>
+<li><a href="#stringr"><span>stringr</span></a></li>
+<li><a href="#readr"><span>readr</span></a></li>
+<li><a href="#purrr"><span>purrr</span></a></li>
 </ul></li>
 <li><a href="#extra-tidyverse">Extra Tidyverse</a></li>
 </ul>
 </nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+.exercise { 
+  background-color: rgb(247, 255, 99);
+  } 
+</style>
 </div>
 <p>Description: Take the time to explore the lesser known functions and packages of the Tidyverse. Learn about how to access googlesheets, use times/dates, manipulate text, use functional programming to replace loops, and more.</p>
 <p>Learning objectives</p>
@@ -2152,7 +2159,7 @@ Workshops
 x dplyr::filter() masks stats::filter()
 x dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<h3 id="tibble">tibble</h3>
+<h3 id="tibble"><a href="https://tibble.tidyverse.org">tibble</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/tibble.png" width="368" /></p>
 </div>
@@ -2190,6 +2197,10 @@ $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1…
 $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4…
 $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</code></pre>
 </div>
+<section id="exercise" class="exercise">
+<h4>Exercise</h4>
+<p>Use <code>tribble()</code> to manually input some data</p>
+</section>
 <h3 id="ggplot2"><a href="https://ggplot2.tidyverse.org">ggplot2</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/ggplot2.png" width="368" /></p>
@@ -2253,9 +2264,13 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <li><code>dplyr::transmute</code></li>
 <li><code>dplyr::relocate</code></li>
 <li><code>dplyr::across</code></li>
+<li><code>dplyr::c_across</code></li>
 <li><code>dplyr::starts_with</code>/<code>dplyr::contains</code>/<code>dplyr::ends_with</code></li>
 <li><code>dplyr::case_when</code></li>
 </ul>
+<section id="exercise-1" class="exercise">
+<h4>Exercise</h4>
+</section>
 <h3 id="tidyr"><a href="https://tidyr.tidyverse.org">tidyr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/tidyr.png" width="368" /></p>
@@ -2269,20 +2284,31 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <li><code>tidyr::drop_na</code></li>
 <li><code>tidyr::replace_na</code></li>
 </ul>
-<h3 id="forcats">forcats</h3>
+<section id="exercise-2" class="exercise">
+<h4>Exercise</h4>
+</section>
+<h3 id="forcats"><a href="https://forcats.tidyverse.org">forcats</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/forcats.png" width="368" /></p>
 </div>
 <p>-<code>forcats::relevel</code> - <code>forcats::reorder</code> - <code>forcats::recode</code></p>
-<h3 id="stringr">stringr</h3>
+<section id="exercise-3" class="exercise">
+<h4>Exercise</h4>
+<p>Use <code>forcats</code> to re-order your bar plot so that it is most frequent on the left, and least on the right.</p>
+</section>
+<h3 id="stringr"><a href="https://stringr.tidyverse.org">stringr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/stringr.png" width="368" /></p>
 </div>
 <ul>
+<li><code>stringr::str_detect</code></li>
 <li><code>stringr::str_remove</code></li>
-<li><code>stringr::extract</code></li>
+<li><code>stringr::str_extract</code></li>
 </ul>
-<h3 id="readr">readr</h3>
+<section id="exercise-4" class="exercise">
+<h4>Exercise</h4>
+</section>
+<h3 id="readr"><a href="https://readr.tidyverse.org">readr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/readr.png" width="368" /></p>
 </div>
@@ -2299,7 +2325,10 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 </div>
 <pre><code>[1]   0.40  -6.00   5.00   0.01  24.00 300.00</code></pre>
 </div>
-<h3 id="purrr">purrr</h3>
+<section id="exercise-5" class="exercise">
+<h4>Exercise</h4>
+</section>
+<h3 id="purrr"><a href="https://purrr.tidyverse.org">purrr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/purrr.png" width="368" /></p>
 </div>
@@ -2309,6 +2338,9 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <li><code>purrr::transpose</code></li>
 <li><code>purrr::keep</code>/<code>purrr::discard</code>/<code>purrr::pluck</code></li>
 </ul>
+<section id="exercise-6" class="exercise">
+<h4>Exercise</h4>
+</section>
 <h2 id="extra-tidyverse">Extra Tidyverse</h2>
 <ul>
 <li>readxl</li>

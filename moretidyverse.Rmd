@@ -17,6 +17,13 @@ output:
     toc: yes
 ---
 
+```{css, echo = FALSE}
+.exercise { 
+  background-color: rgb(247, 255, 99);
+  } 
+```
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -47,7 +54,7 @@ library(tidyverse)
 
 
 
-### tibble
+### [tibble](https://tibble.tidyverse.org)
 
 ```{r, echo = FALSE}
 knitr::include_graphics("images/tibble.png")
@@ -69,6 +76,12 @@ tibble::tribble( ~column1, ~column2, ~column3,
 ```{r}
 tibble::glimpse(mtcars)
 ```
+
+<div class='exercise'>
+#### Exercise
+
+Use `tribble()` to manually input some data 
+</div>
 
 
 ### [ggplot2](https://ggplot2.tidyverse.org)
@@ -107,8 +120,17 @@ knitr::include_graphics("images/dplyr.png")
 - `dplyr::transmute`
 - `dplyr::relocate`
 - `dplyr::across`
+- `dplyr::c_across`
 - `dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with`
 - `dplyr::case_when`
+
+<div class='exercise'>
+#### Exercise
+
+
+</div>
+
+
 
 ### [tidyr](https://tidyr.tidyverse.org)
 
@@ -125,7 +147,14 @@ knitr::include_graphics("images/tidyr.png")
 - `tidyr::drop_na`
 - `tidyr::replace_na`
 
-### forcats
+
+<div class='exercise'>
+#### Exercise
+
+
+</div>
+
+### [forcats](https://forcats.tidyverse.org)
 
 
 ```{r, echo = FALSE}
@@ -136,16 +165,32 @@ knitr::include_graphics("images/forcats.png")
 - `forcats::reorder`
 - `forcats::recode`
 
-### stringr
+
+<div class='exercise'>
+#### Exercise
+
+Use `forcats` to re-order your bar plot so that it is most frequent on the left, and least on the right.
+
+</div>
+
+### [stringr](https://stringr.tidyverse.org)
 
 
 ```{r, echo = FALSE}
 knitr::include_graphics("images/stringr.png")
 ```
-- `stringr::str_remove`
-- `stringr::extract`
 
-### readr
+- `stringr::str_detect`
+- `stringr::str_remove`
+- `stringr::str_extract`
+
+<div class='exercise'>
+#### Exercise
+
+
+</div>
+
+### [readr](https://readr.tidyverse.org)
 
 
 ```{r, echo = FALSE}
@@ -163,7 +208,13 @@ readr::parse_number(text_to_parse)
 ```
 
 
-### purrr
+<div class='exercise'>
+#### Exercise
+
+
+</div>
+
+### [purrr](https://purrr.tidyverse.org)
 
 
 ```{r, echo = FALSE}
@@ -176,7 +227,11 @@ knitr::include_graphics("images/purrr.png")
 - `purrr::keep`/`purrr::discard`/`purrr::pluck`
 
 
+<div class='exercise'>
+#### Exercise
 
+
+</div>
 
 
 ## Extra Tidyverse
