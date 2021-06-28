@@ -13,11 +13,15 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: yes
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+
 
 Time: 90 minutes
 

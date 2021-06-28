@@ -15,19 +15,17 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: yes
+    css: style.css
 ---
 
-```{css, echo = FALSE}
-.exercise { 
-  background-color: rgb(247, 255, 99);
-  } 
-```
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 ```
+
+Time: 90 min
 
 Description: Take the time to explore the lesser known functions and packages of the Tidyverse. Learn about how to access googlesheets, use times/dates, manipulate text, use functional programming to replace loops, and more.
 
@@ -45,6 +43,8 @@ Learning objectives
 > The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
 > -  https://www.tidyverse.org
 
+
+https://rstudio-education.github.io/tidyverse-cookbook/index.html
 
 ## Core Tidyverse
 
@@ -90,25 +90,17 @@ Use `tribble()` to manually input some data
 knitr::include_graphics("images/ggplot2.png")
 ```
 
-The majority of `ggplot2` functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There are two however that can be very helpful to know about.
+The majority of `ggplot2` functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.
 
 
 `ggplot2::theme_set` allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.
 
 
-`ggplot2::ggplot_build` is the function that allows you pull out the data that is being used to create a plot. Each component of a ggplot is stored as an element of a list and 
-
-```{r plot_example}
-p <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + geom_point() + geom_smooth(method = 'lm')
-
-plot(p)
-```
-
 ```{r}
-names(ggplot2::ggplot_build(p))
-
-ggplot2::ggplot_build(p)[["data"]] %>% tibble::glimpse()
+# Set the theme to theme_bw for all following plots
+ggplot2::theme_set(theme_bw())
 ```
+
 
 ### [dplyr](https://dplyr.tidyverse.org)
 
@@ -117,12 +109,17 @@ ggplot2::ggplot_build(p)[["data"]] %>% tibble::glimpse()
 knitr::include_graphics("images/dplyr.png")
 ```
  
-- `dplyr::transmute`
-- `dplyr::relocate`
-- `dplyr::across`
-- `dplyr::c_across`
-- `dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with`
-- `dplyr::case_when`
+`dplyr::transmute` is similar to `dplyr::mutate` except only columns specified are kept.
+
+`dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with` are useful helper functions to enable easy selection of columns.
+
+`dplyr::relocate` is a very useful function that enables you to relocate columns to specific locations. It uses a `.before` or `.after` argument to specify where you to more the column(s) to.
+
+`dplyr::across` lets you apply a function or functions across multiple columns. This is usually used in conjunction with `dplyr::summarise` or `dplyr::mutate`.
+
+`dplyr::c_across` lets you combine values from across multiple columns, such as performing a summarising function on select columns.
+
+`dplyr::case_when` is useful in situations where you would have multiple ifelses.
 
 <div class='exercise'>
 #### Exercise
@@ -161,7 +158,7 @@ knitr::include_graphics("images/tidyr.png")
 knitr::include_graphics("images/forcats.png")
 ```
 
--`forcats::relevel`
+- `forcats::relevel`
 - `forcats::reorder`
 - `forcats::recode`
 
