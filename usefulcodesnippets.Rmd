@@ -11,10 +11,11 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: yes
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Time: 90 min
@@ -51,11 +52,95 @@ In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if 
 ## Workflow advice
 
 - here
+
+```{r, eval = FALSE}
+library(here)
+
+here()
+```
+
+
 - janitor
+
+```{r, eval = FALSE}
+library(janitor)
+
+clean_names()
+```
+
+
 - usethis
+
+```{r, eval = FALSE}
+library(usethis)
+
+use_r()
+edit_r_profile()
+create_project()
+```
+
+
 - Rprojects
 
 
+Read in a directory of files
+
+```{r, eval = FALSE}
+library(tidyverse)
+files <- list.files(pattern = "*.csv", full.names = TRUE)
+
+my_csvs <- map(files, read_csv)
+
+```
+
+
+quickly find out the number of blank entries in a column:
+
+```{r, eval = FALSE}
+table(is.na(df$colname))
+```
+
+replace blank cells in a data.frame with NA:
+
+```{r, eval = FALSE}
+data[data == ""] = NA
+```
+
+format your numbers into a fixed width (turns from numeric to character)
+
+```
+# returns character type of number rounded to 3 decimal places
+sprintf('%.3f', 0.123456) 
+```
+
+format **all** numeric columns to 3 decimal places and make into a table
+
+
+```{r}
+library(tidyverse)
+ mtcars %>% mutate(across(where(is.numeric), list(~sprintf('%.3f', .) ) )) %>% kableExtra::kbl()
+```
+
+
+
+*tidy* way to transpose a dataframe/tibble
+
+```{r}
+
+mtcars %>%
+  tibble::rownames_to_column() %>% # may or may not be needed
+  tidyr::pivot_longer(-rowname, names_to = "var", values_to = "value") %>% 
+  tidyr::pivot_wider(names_from = "rowname", values_from = "value")
+```
+
+pull out the nth string after a string split
+```
+purr::map_chr(stringr::str_split(string_vec, "pattern"), n)
+```
+
+```{r purrr}
+purrr::map_chr(stringr::str_split(c("chr1","chr2","chr3"), "chr"), 2) # you would get back c("1","2","3")
+```
 
 # Bash
 
@@ -73,17 +158,71 @@ echo $0
 
 Creating your .bashrc or .zsh
 
-- path
-- alias
-- prompt
-- ssh config
-- tmux
+Bash profile for login
+`.bashrc` is the common file that controls your bash set up and usually can be found at `~/.bashrc`. Some systems (such as MacOS) also have a file `.bash_profile`. If your system uses the `.bash_profile` file, you can make it refer to `.bashrc` by having this as the contents of `.bash_profile`:
 
+```
+[[ -r ~/.bashrc ]] && . ~/.bashrc
+```
+
+In the `.bashrc` file it is useful to set a customised prompt, set variables that are useful - e.g. PATH to define where bash looks for installed software - and set up some custom commands (aliases) to make common tasks easier.
+
+Custom prompt
+Creating your own prompt in bash can be really useful rather than having a straight `$`. http://ezprompt.net provides a nice way of modifying your prompt and providing the code to add to your `.bashrc`.
+
+Things you might want to do:
+
+- add your username
+- add the hostname (the name of the computer)
+- add the current directory
+- add the full path to the current directory
+- have colour
+
+### Exported variables
+Exporting variables is a useful way for defining environmental settings. Often this is setting a bash variable to tell programs where to look for things. This website has a few examples of bash variables (https://www.thegeekstuff.com/2010/08/bash-shell-builtin-commands/).
+
+It is useful to include the RSTUDIO_PANDOC variables below.
+
+Rmarkdown Pandoc
+A useful one on the server, is defining where R is going to look for pandoc for compiling RMarkdown documents.
+
+I have the following in my .bashrc file
+
+```
+export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc
+```
+
+But the location is likely different on your computer. In R, use the command `rmarkdown::find_pandoc()` to find out where the RStudio version of pandoc is located.
+
+
+Setting this in your `.bashrc is important because there might be another instance of pandoc that is available on your PATH and might cause issues if you run R from the commandline. RSTUDIO_PANDOC is the name that R has specified to use if you want to customise which pandoc is used.
+
+
+### Better bash history
+
+Bash records your history as it goes but if you are operating across multiple windows it doesn’t work the way you would hope for - e.g. it is only recorded from a single given session, even if you work in multiple. PROMPT_COMMAND is a bash variable that is run as part of running commands. This particular one is designed to time and date stamp commands (not run as root) and their working directory into a daily log file. The logs live in `~/.logs/` so this needs to be made for the command to run `mkdir -p ~/.logs`.
+
+```
+export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+```
+
+If I want to search my logs I can use `grep <command> ~/.logs/*` and it will tell me all the times and directories I ran a command, and how I ran it. The history in these log files is made up of all commands you run on the computer, regardless of how many terminal windows you have open.
+
+Aliases
+
+If you have commands that you're always typing out such as `ls -lrth` it can be useful to create an `alias` for the command that is shorter and easier to type out.
+
+e.g.
+```
+alias ll="ls -lrth"
+```
+
+This can be written in your `.bashrc` so that you can use them in new sessions. These can be very useful but remember they are only available on machines you have been able to customise your `.bashrc`.
 
 # Python
 
 Virtual environments
 - conda
-    - conda create
-    - conda activate
-    - conda deactivate
+- conda create
+- conda activate
+- conda deactivate
