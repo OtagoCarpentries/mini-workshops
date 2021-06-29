@@ -11,10 +11,12 @@ date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: yes
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
 ```
 
 
@@ -29,5 +31,51 @@ Creating a simple webpage with markdown
 Modifying pages and tracking changes
 How to use Github for collaboration
 
-- create github account
+# Websites with GitHub
+
+Git is a piece of software that manages version control (like track changes in Word) of code in projects known as repositories. GitHub is a website that is used to host these repositories but it also does much more and provides some automation of compiling code - one of these automations was designed to compile web-based languages into websites that could be used to communicate about your repositories. In this workshop, we're going to leverage this automated process from what is known as GitHub Pages in order to create simple websites.
+
+For this workshop, we're going to create two websites, the first is a "sandpit" where we'll introduce how to get a website up and running from scratch. The second, we'll use an existing template for an academic CV that you can then customise.
+
+## Creating a GitHub Account
+
+In order to use GitHub, we need to create an account for ourselves.
+
+1. Open up your web browser and go to [https://github.com](https://github.com)
+
+```{r, echo = FALSE}
+include_graphics("images/gh_pages/github_com.png")
+```
+
+
+2. Sign up a GitHub account
+
+3. Sign in to your GitHub account
+
+Now that we're set up with an account, we can start creating our first website
+
+## Website Repository
+
+First we need to create the repository (project) where the code for our website is going to live.
+
+1. Click on the Plus icon in the top left
+
+```{r}
+include_graphics("images/gh_pages/logged_in.png")
+```
+
+2. Select `New Repository`
+
+3. Fill in the details
+    - Choose a name for your repository - this will end up as part of the url for your website: e.g. `my-test-website` for me would end up as `https://murraycadzow.github.io/my-test-website`
+    - Select `Public`
+    - Check `Add a README file`
+4. Create Repository
+
+
+```{r}
+include_graphics("images/gh_pages/repo_setup.png")
+```
+5. 
+
 - example template: https://academicpages.github.io

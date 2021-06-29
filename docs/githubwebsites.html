@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-06-28"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-06-28"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-06-29"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-06-29"/>
   <meta name="article:author" content="Murray Cadzow"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating Websites with GitHub"]},{"type":"character","attributes":{},"value":["Create a website using GitHub Pages.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-06-28"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating Websites with GitHub"]},{"type":"character","attributes":{},"value":["Create a website using GitHub Pages.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-06-29"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2049,6 +2049,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="style.css" type="text/css"/>
 
 </head>
 
@@ -2057,7 +2058,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Creating Websites with GitHub","description":"Create a website using GitHub Pages.","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-28T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
+{"title":"Creating Websites with GitHub","description":"Create a website using GitHub Pages.","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-29T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2081,6 +2082,7 @@ Workshops
 <a href="usefulcodesnippets.html">Useful Code Snippets</a>
 <a href="githubwebsites.html">Creating websites with GitHub</a>
 <a href="workflowlanguages.html">Workflow Languages</a>
+<a href="debuggingtips.html">Debugging/Troubleshooting Tips and Tricks</a>
 </div>
 </div>
 <a href="about.html">About</a>
@@ -2102,15 +2104,66 @@ Workshops
 <div class="d-byline">
   Murray Cadzow  (University of Otago)
   
-<br/>2021-06-28
+<br/>2021-06-29
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#websites-with-github">Websites with GitHub</a>
+<ul>
+<li><a href="#creating-a-github-account">Creating a GitHub Account</a></li>
+<li><a href="#website-repository">Website Repository</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <p>Time: 120 min</p>
 <p>Description: This workshop will introduce you to the world of using creating simple websites using the markdown language. A it will involve a practical application of version control principles which can be applied to other code as well.</p>
 <p>Creating up a github account Creating a repository Introduction to markdown syntax for formatting Creating a simple webpage with markdown Modifying pages and tracking changes How to use Github for collaboration</p>
+<h1 id="websites-with-github">Websites with GitHub</h1>
+<p>Git is a piece of software that manages version control (like track changes in Word) of code in projects known as repositories. GitHub is a website that is used to host these repositories but it also does much more and provides some automation of compiling code - one of these automations was designed to compile web-based languages into websites that could be used to communicate about your repositories. In this workshop, we’re going to leverage this automated process from what is known as GitHub Pages in order to create simple websites.</p>
+<p>For this workshop, we’re going to create two websites, the first is a “sandpit” where we’ll introduce how to get a website up and running from scratch. The second, we’ll use an existing template for an academic CV that you can then customise.</p>
+<h2 id="creating-a-github-account">Creating a GitHub Account</h2>
+<p>In order to use GitHub, we need to create an account for ourselves.</p>
+<ol type="1">
+<li>Open up your web browser and go to <a href="https://github.com">https://github.com</a></li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/github_com.png" width="437" /></p>
+</div>
+<ol start="2" type="1">
+<li><p>Sign up a GitHub account</p></li>
+<li><p>Sign in to your GitHub account</p></li>
+</ol>
+<p>Now that we’re set up with an account, we can start creating our first website</p>
+<h2 id="website-repository">Website Repository</h2>
+<p>First we need to create the repository (project) where the code for our website is going to live.</p>
+<ol type="1">
+<li>Click on the Plus icon in the top left</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/logged_in.png" width="445" /></p>
+</div>
+<ol start="2" type="1">
+<li><p>Select <code>New Repository</code></p></li>
+<li><p>Fill in the details</p>
 <ul>
-<li>create github account</li>
+<li>Choose a name for your repository - this will end up as part of the url for your website: e.g. <code>my-test-website</code> for me would end up as <code>https://murraycadzow.github.io/my-test-website</code></li>
+<li>Select <code>Public</code></li>
+<li>Check <code>Add a README file</code></li>
+</ul></li>
+<li><p>Create Repository</p></li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/repo_setup.png" width="924" /></p>
+</div>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<ul>
 <li>example template: <a href="https://academicpages.github.io" class="uri">https://academicpages.github.io</a></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
