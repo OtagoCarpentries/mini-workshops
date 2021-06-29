@@ -25,6 +25,35 @@ Description: This session will cover useful code snippets that are designed to i
 
 # R
 
+## Rprofile
+
+```{r, eval = FALSE}
+
+# Load helper packages if using interactive session (doesn't alter your environment)
+# Don't add 'analysis' packages here
+if (interactive()) {
+  suppressMessages(require(devtools))
+  suppressMessages(require(usethis))
+  suppressMessages(require(testthat))
+}
+
+# set CRAN
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+
+# warn on partial matches
+options(
+  warnPartialMatchArgs = TRUE,
+  warnPartialMatchDollar = TRUE,
+  warnPartialMatchAttr = TRUE
+)
+
+# fancy quotes are annoying and lead to
+# 'copy + paste' bugs / frustrations
+options(useFancyQuotes = FALSE)
+```
+
+
+
 ## RMarkdown
 
 In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if you want to selectively run lines within a rmd code chunk you can exclude them explicitly:
@@ -106,6 +135,23 @@ replace blank cells in a data.frame with NA:
 data[data == ""] = NA
 ```
 
+Reorder a vector
+```{r}
+x <- c("b", "c", "a")
+
+# sorts the vector then returns the indices 
+order(x)
+
+x[order(x)]
+
+
+
+df <- data.frame(x = rep(1:3, each = 2), y = 6:1, z = letters[1:6])
+
+```
+
+
+
 format your numbers into a fixed width (turns from numeric to character)
 
 ```
@@ -129,8 +175,11 @@ library(tidyverse)
 
 mtcars %>%
   tibble::rownames_to_column() %>% # may or may not be needed
-  tidyr::pivot_longer(-rowname, names_to = "var", values_to = "value") %>% 
-  tidyr::pivot_wider(names_from = "rowname", values_from = "value")
+  tidyr::pivot_longer(-rowname,
+                      names_to = "var", 
+                      values_to = "value") %>% 
+  tidyr::pivot_wider(names_from = "rowname", 
+                     values_from = "value")
 ```
 
 pull out the nth string after a string split
@@ -141,6 +190,12 @@ purr::map_chr(stringr::str_split(string_vec, "pattern"), n)
 ```{r purrr}
 purrr::map_chr(stringr::str_split(c("chr1","chr2","chr3"), "chr"), 2) # you would get back c("1","2","3")
 ```
+
+```{r, eval = FALSE}
+library(kableExtra)
+```
+
+
 
 # Bash
 
