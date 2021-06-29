@@ -25,3 +25,4 @@ Workshop sites can be found under the workshops menu and are available for:
 - [Useful code snippets for everyday tasks](usefulcodesnippets.html)
 - [Creating websites with GitHub](githubwebsites.html)
 - [Workflow Languages](workflowlanguages.html)
+- [Debugging/Troubleshooting Tips and Tricks](debuggingtips.html)

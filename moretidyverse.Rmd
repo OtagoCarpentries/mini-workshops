@@ -109,6 +109,8 @@ ggplot2::theme_set(theme_bw())
 knitr::include_graphics("images/dplyr.png")
 ```
  
+ `dplyr::rename` provides the renaming ability of `dplyr::select` but it doesn't subset.
+ 
 `dplyr::transmute` is similar to `dplyr::mutate` except only columns specified are kept.
 
 `dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with` are useful helper functions to enable easy selection of columns.
