@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-06-29"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-06-29"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-07-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-01"/>
   <meta name="article:author" content="Murray Cadzow"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating Websites with GitHub"]},{"type":"character","attributes":{},"value":["Create a website using GitHub Pages.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-06-29"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating Websites with GitHub"]},{"type":"character","attributes":{},"value":["Create a website using GitHub Pages.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2058,7 +2058,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Creating Websites with GitHub","description":"Create a website using GitHub Pages.","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-29T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
+{"title":"Creating Websites with GitHub","description":"Create a website using GitHub Pages.","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2104,7 +2104,7 @@ Workshops
 <div class="d-byline">
   Murray Cadzow  (University of Otago)
   
-<br/>2021-06-29
+<br/>2021-07-01
 </div>
 
 <div class="d-article">
@@ -2115,7 +2115,15 @@ Workshops
 <li><a href="#websites-with-github">Websites with GitHub</a>
 <ul>
 <li><a href="#creating-a-github-account">Creating a GitHub Account</a></li>
-<li><a href="#website-repository">Website Repository</a></li>
+<li><a href="#website-repository">Website Repository</a>
+<ul>
+<li><a href="#customising">Customising</a></li>
+<li><a href="#markdown">Markdown</a></li>
+</ul></li>
+<li><a href="#create-a-website-from-a-template">Create a website from a template</a>
+<ul>
+<li><a href="#customising-1">Customising</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -2155,17 +2163,53 @@ Workshops
 <li>Select <code>Public</code></li>
 <li>Check <code>Add a README file</code></li>
 </ul></li>
-<li><p>Create Repository</p></li>
+<li><p>Click <code>Create Repository</code></p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/gh_pages/repo_setup.png" width="924" /></p>
 </div>
 <ol start="5" type="1">
-<li></li>
+<li>Create your site</li>
 </ol>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/repo_step1.png" width="604" /></p>
+</div>
+<p>Click the <code>Settings</code> menu (near top right next to the cog)</p>
+<p>Then click on the <code>Pages</code> link from the left-hand Options menu</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/pages.png" width="530" /></p>
+</div>
+<p>Currently GitHub Pages is disabled so we need to change the source from <code>None</code> to <code>main</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/pages_main.png" width="382" /></p>
+</div>
+<p>Leave it set to <code>/ (root)</code> and click Save. This means that GitHub will take our files we write in markdown and convert them to HTML for us.</p>
+<p>GitHub will also tell you the URL that the website is now being published to</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/pages_on.png" width="451" /></p>
+</div>
+<h3 id="customising">Customising</h3>
+<p>Next we’ll pick a theme for our website.</p>
+<p>Click the <code>Choose a theme</code> button and then browse through the themes in the gallery and select one you like with the <code>Select theme</code> button.</p>
+<p>You’ll then be put in to editing your README.md file which now contains a template text explaining some of the markdown syntax (which we’re about to cover next).</p>
+<p>Scroll to the bottom and click the green <code>Commit changes</code> button</p>
+<p>Now click on your repository name at the top left to come back to seeing the contents of your repository</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/repo_theme.png" width="622" /></p>
+</div>
+<p>You’ll see two files, the first is the <code>README.md</code> which is being displayed, and the second is a file <code>_config.yml</code> which contains the configuration information for your website. So far the only configuration is the choice of theme.</p>
+<p>I chose the slate theme and now my website looks like this</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/gh_pages/site_readme.png" width="622" /></p>
+</div>
+<h3 id="markdown">Markdown</h3>
+<p>GitHub Pages is an automatic system that will convert files written in markdown (commonly with a <code>.md</code> file extension) into HTML webpages. Markdown itself is a simplified text based syntax used for styling of writing.</p>
+<p>Take a look at the contents of the <code>README.md</code> to see some of the syntax we can use to style the text of our website.</p>
+<h2 id="create-a-website-from-a-template">Create a website from a template</h2>
 <ul>
 <li>example template: <a href="https://academicpages.github.io" class="uri">https://academicpages.github.io</a></li>
 </ul>
+<h3 id="customising-1">Customising</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

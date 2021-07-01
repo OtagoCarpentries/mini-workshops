@@ -56,6 +56,7 @@ Now that we're set up with an account, we can start creating our first website
 
 ## Website Repository
 
+
 First we need to create the repository (project) where the code for our website is going to live.
 
 1. Click on the Plus icon in the top left
@@ -70,12 +71,78 @@ include_graphics("images/gh_pages/logged_in.png")
     - Choose a name for your repository - this will end up as part of the url for your website: e.g. `my-test-website` for me would end up as `https://murraycadzow.github.io/my-test-website`
     - Select `Public`
     - Check `Add a README file`
-4. Create Repository
+
+4. Click `Create Repository`
 
 
 ```{r}
 include_graphics("images/gh_pages/repo_setup.png")
 ```
-5. 
+5. Create your site
+
+```{r}
+include_graphics("images/gh_pages/repo_step1.png")
+```
+
+Click the `Settings` menu (near top right next to the cog)
+
+Then click on the `Pages` link from the left-hand Options menu
+
+```{r}
+include_graphics("images/gh_pages/pages.png")
+```
+
+Currently GitHub Pages is disabled so we need to change the source from `None` to `main`. 
+
+```{r}
+include_graphics("images/gh_pages/pages_main.png")
+```
+Leave it set to `/ (root)` and click Save. This means that GitHub will take our files we write in markdown and convert them to HTML for us.
+
+GitHub will also tell you the URL that the website is now being published to
+
+```{r}
+include_graphics("images/gh_pages/pages_on.png")
+```
+
+
+
+### Customising
+
+Next we'll pick a theme for our website.
+
+Click the `Choose a theme` button and then browse through the themes in the gallery and select one you like with the `Select theme` button.
+
+You'll then be put in to editing your README.md file which now contains a template text explaining some of the markdown syntax (which we're about to cover next).
+
+Scroll to the bottom and click the green `Commit changes` button
+
+Now click on your repository name at the top left to come back to seeing the contents of your repository
+
+```{r}
+include_graphics("images/gh_pages/repo_theme.png")
+```
+
+You'll see two files, the first is the `README.md` which is being displayed, and the second is a file `_config.yml` which contains the configuration information for your website. So far the only configuration is the choice of theme.
+
+I chose the slate theme and now my website looks like this
+
+```{r}
+include_graphics("images/gh_pages/site_readme.png")
+```
+
+
+### Markdown
+
+GitHub Pages is an automatic system that will convert files written in markdown (commonly with a `.md` file extension) into HTML webpages. Markdown itself is a simplified text based syntax used for styling of writing.
+
+Take a look at the contents of the `README.md` to see some of the syntax we can use to style the text of our website.
+
+
+
+## Create a website from a template
 
 - example template: https://academicpages.github.io
+
+
+### Customising
