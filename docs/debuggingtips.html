@@ -95,6 +95,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="article:published" itemprop="datePublished" content="2021-07-01"/>
   <meta property="article:created" itemprop="dateCreated" content="2021-07-01"/>
   <meta name="article:author" content="Murray Cadzow"/>
+  <meta name="article:author" content="Hugh Cross"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Mini-Workshops: Debugging/Troubleshooting Tips and Tricks"/>
@@ -112,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Debugging/Troubleshooting Tips and Tricks"]},{"type":"character","attributes":{},"value":["Help for when things don't turn out how you expect.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Debugging/Troubleshooting Tips and Tricks"]},{"type":"character","attributes":{},"value":["Help for when things don't turn out how you expect.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Hugh Cross"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2058,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Debugging/Troubleshooting Tips and Tricks","description":"Help for when things don't turn out how you expect.","authors":[{"author":"Murray Cadzow","authorURL":"https://github.com/murraycadzow","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
+{"title":"Debugging/Troubleshooting Tips and Tricks","description":"Help for when things don't turn out how you expect.","authors":[{"author":"Murray Cadzow","authorURL":"https://github.com/murraycadzow","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Hugh Cross","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow & Cross, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2104,6 +2105,8 @@ Workshops
 <div class="d-byline">
   Murray Cadzow <a href="https://github.com/murraycadzow" class="uri">https://github.com/murraycadzow</a> (University of Otago)
   
+,   Hugh Cross  (University of Otago)
+  
 <br/>2021-07-01
 </div>
 
@@ -2115,6 +2118,7 @@ Workshops
 <li><a href="#where-do-i-start">Where do I start?</a>
 <ul>
 <li><a href="#asking-for-help">Asking for help</a></li>
+<li><a href="#automated-testing">Automated testing</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2168,6 +2172,8 @@ Workshops
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"myfile.csv"</span><span class='op'>)</span>
 </code></pre>
 </div>
+<pre><code>Warning in file(file, &quot;rt&quot;): cannot open file &#39;myfile.csv&#39;: No such
+file or directory</code></pre>
 <pre><code>Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span>
@@ -2219,7 +2225,17 @@ logical: returning NA</code></pre>
 <li>effective googling</li>
 </ul>
 <p>Reproducible example</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="automated-testing">Automated testing</h2>
+<p>As you code and manually test, it can be beneficial to formalise the manual tests into an automated solution so that you can be more efficient and also ensure that you know when you ‘break things’ with future changes. This is particularly useful when you fix bugs in your code, create a test that replicates the condition that caused the bug.</p>
+<p>In R one system uses the package <code>testthat</code> which provides a framework to create these formal tests which will evaluate a piece of code against the known expected output and tell you if they don’t match.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># expect a mean of 2</span>
+<span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/equality-expectations.html'>expect_equal</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>, <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

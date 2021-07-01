@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-06-29"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-06-29"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-07-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-01"/>
   <meta name="article:author" content="Murray Cadzow"/>
   <meta name="article:author" content="Matt Bixley"/>
 
@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["More Tidyverse"]},{"type":"character","attributes":{},"value":["Take the time to explore the lesser known functions and packages of the Tidyverse\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["NeSI"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-06-29"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["More Tidyverse"]},{"type":"character","attributes":{},"value":["Take the time to explore the lesser known functions and packages of the Tidyverse\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["NeSI"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2059,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"More Tidyverse","description":"Take the time to explore the lesser known functions and packages of the Tidyverse","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-29T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
+{"title":"More Tidyverse","description":"Take the time to explore the lesser known functions and packages of the Tidyverse","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2107,7 +2107,7 @@ Workshops
   
 ,   Matt Bixley  (NeSI)
   
-<br/>2021-06-29
+<br/>2021-07-01
 </div>
 
 <div class="d-article">
@@ -2303,6 +2303,21 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <ul>
 <li>readxl</li>
 <li>googlesheets4</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidyverse/googlesheets4'>googlesheets4</a></span><span class='op'>)</span>
+
+<span class='co'># grab the url from the browser for your sheet</span>
+<span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"https://docs.google.com/spreadsheets/d/1MbE2_XUfQ9KwfKAJhEDPb6KgOg2EaoXr5IN2F-hjBNI/edit#gid=0"</span>
+
+<span class='co'># read the sheet in</span>
+<span class='va'>my_google_sheet</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/googlesheets4/man/range_read.html'>read_sheet</a></span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The first time running <code>read_sheet</code> you will be asked to authenticate and a web broswer will open up.</p>
+<ul>
 <li>lubridate
 <ul>
 <li><code>lubridate::ymd</code></li>

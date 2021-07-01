@@ -237,6 +237,19 @@ knitr::include_graphics("images/purrr.png")
 
 - readxl
 - googlesheets4
+
+```{r, eval = FALSE}
+library(googlesheets4)
+
+# grab the url from the browser for your sheet
+url <- "https://docs.google.com/spreadsheets/d/1MbE2_XUfQ9KwfKAJhEDPb6KgOg2EaoXr5IN2F-hjBNI/edit#gid=0"
+
+# read the sheet in
+my_google_sheet <- read_sheet(url)
+```
+
+The first time running `read_sheet` you will be asked to authenticate and a web broswer will open up.
+
 - lubridate
     - `lubridate::ymd`
 - hms

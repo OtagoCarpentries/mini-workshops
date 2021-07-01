@@ -7,6 +7,10 @@ author:
     url: https://github.com/murraycadzow
     affiliation: University of Otago
     affiliation_url:
+  - name: Hugh Cross 
+    url: 
+    affiliation: University of Otago
+    affiliation_url:
 date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
@@ -46,7 +50,7 @@ My general process focuses on the initial source of the error and then starts to
 
 Lets look at a few common R errors 
 
-```{r, eval =  TRUE, error = TRUE}
+```{r, eval = TRUE, error = TRUE, warning = TRUE}
 my_var
 
 mean[2]
@@ -89,7 +93,18 @@ mean(c("1", "2"))
 
 Reproducible example
 
+## Automated testing
 
+As you code and manually test, it can be beneficial to formalise the manual tests into an automated solution so that you can be more efficient and also ensure that you know when you 'break things' with future changes. This is particularly useful when you fix bugs in your code, create a test that replicates the condition that caused the bug.
+
+In R one system uses the package `testthat` which provides a framework to create these formal tests which will evaluate a piece of code against the known expected output and tell you if they don't match.
+
+```{r, eval = FALSE}
+
+# expect a mean of 2
+testthat::expect_equal(mean(c(1,2,3)), 2)
+
+```
 
 
 
