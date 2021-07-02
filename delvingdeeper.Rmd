@@ -260,6 +260,14 @@ This abstraction of the problem now gives us the steps to follow and deals with 
 
 ### The `for` Loop
 
+#### Palmer Penguins Dataset
+We are going to use the [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/) dataset with our `for` loops. A set of Phenotypes from 3 Species and 3 Islands put together by Alison Horst
+
+```{r penguins}
+if (!require("palmerpenguins")) install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
 
 `for` loops usually contain the following parts:
 
@@ -315,8 +323,17 @@ print(3)
 The duplication is apparent but not particularly laborious in this case. However, think about how this would scale. What if suddenly you needed to print the numbers 1 to 100, or 1000, or 10000? Using the copy-paste `print()` and manually filling in numbers is going to be pretty laborious and highly risky of typos. Using the `for` loop however, scales extremely easily and would be a matter of only changing what our collection of items going in was, everything else remains the same:
 
 ```{r, eval = FALSE}
-for( num in 1:100 ){
+for( num in 1:10000 ){
   print( num )
+}
+```
+
+#### Exercise
+Print out **the Column Names** of the Penguins Dataset, 1 at a time.
+
+```{r colnames, eval=F, echo = F}
+for (i in colnames(penguins)) {
+  print(i)
 }
 ```
 
@@ -336,6 +353,21 @@ for( i in seq_along(myNumbers) ){
   print(paste("number =", myNumbers[i], "index (i) =", i))
 }
 ```
+
+#### Exercise
+Using indices, caluclate the mean of the 2nd, 3rd and 5th Columns
+
+```{r indicesloop, eval = F, echo = F}
+# selection index
+myIndex <- c(3, 4, 6)
+
+#iterate of the index
+for (i in myIndex) {
+  #print(paste("Mean Column #",i,"is", mean(penguins[,i], na.rm = T)))
+  print(paste("Mean", colnames(penguins)[i],"=", mean(penguins[,i], na.rm = T),2))
+}
+```
+
 
 ### Nesting of loops
 
