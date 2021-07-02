@@ -9,7 +9,7 @@ author:
     affiliation_url:
   - name: Matt Bixley
     affiliation: NeSI 
-date: "`r Sys.Date()`"
+date: "2021-07-05"
 output: 
   distill::distill_article:
     toc: yes

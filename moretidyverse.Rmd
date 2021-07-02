@@ -11,7 +11,7 @@ author:
     url: 
     affiliation: NeSI
     affiliation_url:
-date: "`r Sys.Date()`"
+date: "2021-07-05"
 output: 
   distill::distill_article:
     toc: yes
@@ -228,6 +228,9 @@ knitr::include_graphics("images/purrr.png")
 
 <div class='exercise'>
 #### Exercise
+
+
+
 
 
 </div>
