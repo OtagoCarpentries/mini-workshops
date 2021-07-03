@@ -2216,13 +2216,21 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/tidyr.png" width="368" /></p>
 </div>
-<p><code>tidyr::nest</code>/<code>tidyr::unnest</code></p>
+<p><code>tidyr::nest</code> will for per row, condense the specified columns into a list, which is stored in a single column (list column). <code>tidyr::unnest</code> will take the elements from a list column into their own columns. These functions are particularly useful in conjunction with <code>pivot_longer</code>/<code>pivot_wider</code></p>
 <p><code>tidyr::unite</code>/<code>tidyr::separate</code> will either combine columns with a separator, or split to new columns based on a separator. <code>tidyr::separate_rows</code> will separate a column based on a separator but into separate rows, duplicating the related row data with it.</p>
 <p><code>tidyr::crossing</code> provides a mechanism to create all permutations by ‘crossing’ the values in two vectors. This is particularly useful when combined with <code>purrr</code> for running a function on all sub-groups within your data.</p>
 <p><code>tidyr::drop_na</code> is function that provides a way to remove rows that contain missing data. If a column(s) is specified rows are only removed if the missing data is in the specific columns.</p>
 <p><code>tidyr::replace_na</code> is a function that lets you specify replacement values for your missing values. The values are specified using a named list, with the names corresponding to the columns your want to replace the data in.</p>
 <section id="exercise-2" class="exercise">
 <h4>Exercise</h4>
+<p>Create a data.frame/tibble from the starwars dataset which shows one character/film combo per row for all the films and characters.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># starwars dataset</span>
+<span class='fu'>dplyr</span><span class='fu'>::</span><span class='va'><a href='https://dplyr.tidyverse.org/reference/starwars.html'>starwars</a></span>
+</code></pre>
+</div>
+</div>
 </section>
 <h3 id="stringr"><a href="https://stringr.tidyverse.org">stringr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2273,27 +2281,66 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/forcats.png" width="368" /></p>
 </div>
-<ul>
-<li><code>forcats::relevel</code></li>
-<li><code>forcats::reorder</code></li>
-<li><code>forcats::recode</code></li>
-</ul>
+<p><code>forcats::reorder</code> lets you reorder your factor levels by sorting against another variable. <code>forcats::reorder2</code> is the same as <code>reorder</code> but you can use two variables. The default function for sorting is based on the median.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>color</span>,     <span class='op'>~</span><span class='va'>a</span>, <span class='op'>~</span><span class='va'>b</span>,
+  <span class='st'>"blue"</span>,      <span class='fl'>1</span>,  <span class='fl'>2</span>,
+  <span class='st'>"green"</span>,     <span class='fl'>6</span>,  <span class='fl'>2</span>,
+  <span class='st'>"purple"</span>,    <span class='fl'>3</span>,  <span class='fl'>3</span>,
+  <span class='st'>"red"</span>,       <span class='fl'>2</span>,  <span class='fl'>3</span>,
+  <span class='st'>"yellow"</span>,    <span class='fl'>5</span>,  <span class='fl'>1</span>
+<span class='op'>)</span>
+<span class='va'>df</span><span class='op'>$</span><span class='va'>color</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span><span class='op'>)</span>
+<span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>a</span>, <span class='va'>min</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  purple red    yellow
+Levels: blue red purple yellow green</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>fct_reorder2</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>a</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>b</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  purple red    yellow
+Levels: purple red blue green yellow</code></pre>
+</div>
+<p><code>forcats::infreq</code> will reorder the factor levels based on the frequency of the observations (highest first), and <code>forcats::fct_rev</code> will reverse that order (lowest first).</p>
+<p><code>forcats::relevel</code> lets you manually reorder the levels in your factor. This is useful for when you want to move a particular level such as <code>NA</code> to the end.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_fct</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>,<span class='st'>"green"</span>,<span class='st'>"blue"</span>, <span class='st'>"none"</span>, <span class='st'>"blue"</span>, <span class='st'>"purple"</span>, <span class='st'>"purple"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_fct</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: blue green none purple</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>my_fct</span>, <span class='st'>"none"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: none blue green purple</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># send to the end</span>
+<span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>my_fct</span>, <span class='st'>"none"</span>, after <span class='op'>=</span> <span class='cn'>Inf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: blue green purple none</code></pre>
+</div>
 <section id="exercise-5" class="exercise">
 <h4>Exercise</h4>
-<p>Given the following code that creates a box plot, use <code>forcats</code> to re-order the boxes so that they are in descending order (longest flipper length on th left)</p>
+<p>Alter the following code that creates a bar plot to use <code>forcats</code> to re-order the bars the species of penguins are ordered by frequency, lowest on the left.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://allisonhorst.github.io/palmerpenguins/'>palmerpenguins</a></span><span class='op'>)</span>
 
 <span class='va'>penguins</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>drop_na</span><span class='op'>(</span><span class='va'>species</span>, <span class='va'>flipper_length_mm</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>species</span>, <span class='va'>flipper_length_mm</span><span class='op'>)</span>, 
-             y <span class='op'>=</span> <span class='va'>flipper_length_mm</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>geom_boxplot</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>species</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_bar</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="moretidyverse_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
 </section>
 <h3 id="purrr"><a href="https://purrr.tidyverse.org">purrr</a></h3>
@@ -2311,7 +2358,6 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 </section>
 <h2 id="extra-tidyverse">Extra Tidyverse</h2>
 <ul>
-<li>readxl</li>
 <li>googlesheets4</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -2328,6 +2374,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 </div>
 <p>The first time running <code>read_sheet</code> you will be asked to authenticate and a web broswer will open up.</p>
 <ul>
+<li>readxl</li>
 <li>lubridate
 <ul>
 <li><code>lubridate::ymd</code></li>
@@ -2345,7 +2392,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <li>dtplyr</li>
 <li>dbplyr</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

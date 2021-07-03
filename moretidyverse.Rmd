@@ -123,7 +123,7 @@ knitr::include_graphics("images/dplyr.png")
 knitr::include_graphics("images/tidyr.png")
 ```
 
-`tidyr::nest`/`tidyr::unnest`
+`tidyr::nest` will for per row, condense the specified columns into a list, which is stored in a single column (list column). `tidyr::unnest` will take the elements from a list column into their own columns. These functions are particularly useful in conjunction with `pivot_longer`/`pivot_wider`
 
 `tidyr::unite`/`tidyr::separate` will either combine columns with a separator, or split to new columns based on a separator. `tidyr::separate_rows` will separate a column based on a separator but into separate rows, duplicating the related row data with it.
 
@@ -137,6 +137,13 @@ knitr::include_graphics("images/tidyr.png")
 <div class='exercise'>
 #### Exercise
 
+Create a data.frame/tibble from the starwars dataset which shows one character/film combo per row for all the films and characters.
+
+```{r, eval = FALSE}
+# starwars dataset
+dplyr::starwars
+
+```
 
 </div>
 
@@ -206,25 +213,57 @@ ggplot2::theme_set(theme_bw())
 knitr::include_graphics("images/forcats.png")
 ```
 
-- `forcats::relevel`
-- `forcats::reorder`
-- `forcats::recode`
+
+
+`forcats::reorder` lets you reorder your factor levels by sorting against another variable. `forcats::reorder2` is the same as `reorder` but you can use two variables. The default function for sorting is based on the median.
+
+```{r}
+df <- tibble::tribble(
+  ~color,     ~a, ~b,
+  "blue",      1,  2,
+  "green",     6,  2,
+  "purple",    3,  3,
+  "red",       2,  3,
+  "yellow",    5,  1
+)
+df$color <- factor(df$color)
+fct_reorder(df$color, df$a, min)
+fct_reorder2(df$color, df$a, df$b)
+
+```
+
+`forcats::infreq` will reorder the factor levels based on the frequency of the observations (highest first), and `forcats::fct_rev` will reverse that order (lowest first).
+
+
+`forcats::relevel` lets you manually reorder the levels in your factor. This is useful for when you want to move a particular level such as `NA` to the end.
+
+```{r}
+my_fct <- factor(c("blue","green","blue", "none", "blue", "purple", "purple"))
+my_fct
+
+fct_relevel(my_fct, "none")
+
+# send to the end
+fct_relevel(my_fct, "none", after = Inf)
+
+```
+
+
+
+
 
 
 <div class='exercise'>
 #### Exercise
 
-Given the following code that creates a box plot, use `forcats` to re-order the boxes so that they are in descending order (longest flipper length on th left)
+Alter the following code that creates a bar plot to use `forcats` to re-order the bars the species of penguins are ordered by frequency, lowest on the left.
 
-```{r}
+```{r, eval = FALSE}
 library(tidyverse)
 library(palmerpenguins)
 
 penguins %>% 
-  drop_na(species, flipper_length_mm) %>% 
-  ggplot(aes(x = fct_reorder(species, flipper_length_mm), 
-             y = flipper_length_mm)) + 
-  geom_boxplot()
+  ggplot(aes(x = species)) + geom_bar()
 ```
 
 
@@ -256,7 +295,6 @@ knitr::include_graphics("images/purrr.png")
 
 ## Extra Tidyverse
 
-- readxl
 - googlesheets4
 
 ```{r, eval = FALSE}
@@ -271,6 +309,8 @@ my_google_sheet <- read_sheet(url)
 
 The first time running `read_sheet` you will be asked to authenticate and a web broswer will open up.
 
+
+- readxl
 - lubridate
     - `lubridate::ymd`
 - hms
