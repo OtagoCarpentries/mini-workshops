@@ -220,11 +220,31 @@ my_vec[c(TRUE, FALSE, FALSE, TRUE)]
 my_vec[c(TRUE, FALSE)]
 ```
 
-#### Positional
+#### Positional/Index
 
+The element positions/indexes can be used to perform subsetting. The indexes in R start from 1, unlike many other programming languages.
 
+A negative in-front of the index means to remove that entry but you can't mix negative and positive indexes in the same command.
 
+The index zero returns a zero length vector of the vector atomic type. Using an empty `[]` will return the entire vector. Specifying an index multiple times will duplicate the element. 
 
+```{r}
+my_vec
+
+my_vec[1]
+
+my_vec[-1]
+
+my_vec[c(-2, -4)]
+
+my_vec[c(4,4,4)]
+
+my_vec[0]
+
+my_vec[]
+
+`[`(my_vec, 3)
+```
 
 
 

@@ -2436,7 +2436,52 @@ Workshops
 </div>
 <pre><code>[1] &quot;cat&quot;   &quot;mouse&quot;</code></pre>
 </div>
-<h4 id="positional">Positional</h4>
+<h4 id="positionalindex">Positional/Index</h4>
+<p>The element positions/indexes can be used to perform subsetting. The indexes in R start from 1, unlike many other programming languages.</p>
+<p>A negative in-front of the index means to remove that entry but you can’t mix negative and positive indexes in the same command.</p>
+<p>The index zero returns a zero length vector of the vector atomic type. Using an empty <code>[]</code> will return the entire vector. Specifying an index multiple times will duplicate the element.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;cat&quot;   &quot;dog&quot;   &quot;mouse&quot; &quot;horse&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;cat&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;dog&quot;   &quot;mouse&quot; &quot;horse&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span>, <span class='op'>-</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;cat&quot;   &quot;mouse&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>4</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;horse&quot; &quot;horse&quot; &quot;horse&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='fl'>0</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>character(0)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_vec</span><span class='op'>[</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;cat&quot;   &quot;dog&quot;   &quot;mouse&quot; &quot;horse&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>`[`</span><span class='op'>(</span><span class='va'>my_vec</span>, <span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;mouse&quot;</code></pre>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>example_list</span>
@@ -2657,7 +2702,7 @@ Workshops
 <h3 id="nesting-of-loops">Nesting of loops</h3>
 <p>It’s generally recommended to avoid the nesting of loops within other loops. Let’s say the outer loop has a total of <code>n</code> iterations to get through and an inner loop has <code>m</code>. Every time we add one extra iteration of the outer loop we end up adding an extra <code>m</code> iterations of the inner loop, so the total number of iterations is <code>n * m</code>. Depending on how big <code>m</code> is, this could be adding thousands or millions of extra iterations, causing your code to take longer to run. Some times however, nesting is unavoidable but it’s a good idea to keep an eye out for nesting if your code is taking a while to run as this is usually the first place things can be sped up.</p>
 <h2 id="running-scripts">Running Scripts</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
