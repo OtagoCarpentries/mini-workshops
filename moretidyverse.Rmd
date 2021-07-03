@@ -84,22 +84,7 @@ Use `tribble()` to manually input some data
 </div>
 
 
-### [ggplot2](https://ggplot2.tidyverse.org)
 
-```{r, echo = FALSE}
-knitr::include_graphics("images/ggplot2.png")
-```
-
-The majority of `ggplot2` functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.
-
-
-`ggplot2::theme_set` allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.
-
-
-```{r}
-# Set the theme to theme_bw for all following plots
-ggplot2::theme_set(theme_bw())
-```
 
 
 ### [dplyr](https://dplyr.tidyverse.org)
@@ -138,13 +123,15 @@ knitr::include_graphics("images/dplyr.png")
 knitr::include_graphics("images/tidyr.png")
 ```
 
-- `tidyr::nest`
-- `tidyr::unnest`
-- `tidyr::separate`/`tidyr::separate_rows`
-- `tidyr::unite`
-- `tidyr::crossing`
-- `tidyr::drop_na`
-- `tidyr::replace_na`
+`tidyr::nest`/`tidyr::unnest`
+
+`tidyr::unite`/`tidyr::separate` will either combine columns with a separator, or split to new columns based on a separator. `tidyr::separate_rows` will separate a column based on a separator but into separate rows, duplicating the related row data with it.
+
+`tidyr::crossing` provides a mechanism to create all permutations by 'crossing' the values in two vectors. This is particularly useful when combined with `purrr` for running a function on all sub-groups within your data. 
+
+`tidyr::drop_na` is function that provides a way to remove rows that contain missing data. If a column(s) is specified rows are only removed if the missing data is in the specific columns.
+
+`tidyr::replace_na` is a function that lets you specify replacement values for your missing values. The values are specified using a named list, with the names corresponding to the columns your want to replace the data in.
 
 
 <div class='exercise'>
@@ -153,24 +140,6 @@ knitr::include_graphics("images/tidyr.png")
 
 </div>
 
-### [forcats](https://forcats.tidyverse.org)
-
-
-```{r, echo = FALSE}
-knitr::include_graphics("images/forcats.png")
-```
-
-- `forcats::relevel`
-- `forcats::reorder`
-- `forcats::recode`
-
-
-<div class='exercise'>
-#### Exercise
-
-Use `forcats` to re-order your bar plot so that it is most frequent on the left, and least on the right.
-
-</div>
 
 ### [stringr](https://stringr.tidyverse.org)
 
@@ -212,6 +181,55 @@ readr::parse_number(text_to_parse)
 
 
 </div>
+
+### [ggplot2](https://ggplot2.tidyverse.org)
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/ggplot2.png")
+```
+
+The majority of `ggplot2` functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.
+
+
+`ggplot2::theme_set` allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.
+
+
+```{r}
+# Set the theme to theme_bw for all following plots
+ggplot2::theme_set(theme_bw())
+```
+
+### [forcats](https://forcats.tidyverse.org)
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/forcats.png")
+```
+
+- `forcats::relevel`
+- `forcats::reorder`
+- `forcats::recode`
+
+
+<div class='exercise'>
+#### Exercise
+
+Given the following code that creates a box plot, use `forcats` to re-order the boxes so that they are in descending order (longest flipper length on th left)
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+penguins %>% 
+  drop_na(species, flipper_length_mm) %>% 
+  ggplot(aes(x = fct_reorder(species, flipper_length_mm), 
+             y = flipper_length_mm)) + 
+  geom_boxplot()
+```
+
+
+</div>
+
 
 ### [purrr](https://purrr.tidyverse.org)
 
