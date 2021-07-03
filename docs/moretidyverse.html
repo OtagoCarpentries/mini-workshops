@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-07-01"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-07-01"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-07-05"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-05"/>
   <meta name="article:author" content="Murray Cadzow"/>
   <meta name="article:author" content="Matt Bixley"/>
 
@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["More Tidyverse"]},{"type":"character","attributes":{},"value":["Take the time to explore the lesser known functions and packages of the Tidyverse\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["NeSI"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["More Tidyverse"]},{"type":"character","attributes":{},"value":["Take the time to explore the lesser known functions and packages of the Tidyverse\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["NeSI"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2059,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"More Tidyverse","description":"Take the time to explore the lesser known functions and packages of the Tidyverse","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
+{"title":"More Tidyverse","description":"Take the time to explore the lesser known functions and packages of the Tidyverse","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-05T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2107,7 +2107,7 @@ Workshops
   
 ,   Matt Bixley  (NeSI)
   
-<br/>2021-07-01
+<br/>2021-07-05
 </div>
 
 <div class="d-article">
@@ -2118,12 +2118,12 @@ Workshops
 <li><a href="#core-tidyverse">Core Tidyverse</a>
 <ul>
 <li><a href="#tibble"><span>tibble</span></a></li>
-<li><a href="#ggplot2"><span>ggplot2</span></a></li>
 <li><a href="#dplyr"><span>dplyr</span></a></li>
 <li><a href="#tidyr"><span>tidyr</span></a></li>
-<li><a href="#forcats"><span>forcats</span></a></li>
 <li><a href="#stringr"><span>stringr</span></a></li>
 <li><a href="#readr"><span>readr</span></a></li>
+<li><a href="#ggplot2"><span>ggplot2</span></a></li>
+<li><a href="#forcats"><span>forcats</span></a></li>
 <li><a href="#purrr"><span>purrr</span></a></li>
 </ul></li>
 <li><a href="#extra-tidyverse">Extra Tidyverse</a></li>
@@ -2198,19 +2198,6 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <h4>Exercise</h4>
 <p>Use <code>tribble()</code> to manually input some data</p>
 </section>
-<h3 id="ggplot2"><a href="https://ggplot2.tidyverse.org">ggplot2</a></h3>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="images/ggplot2.png" width="368" /></p>
-</div>
-<p>The majority of <code>ggplot2</code> functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.</p>
-<p><code>ggplot2::theme_set</code> allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Set the theme to theme_bw for all following plots</span>
-<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
 <h3 id="dplyr"><a href="https://dplyr.tidyverse.org">dplyr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/dplyr.png" width="368" /></p>
@@ -2229,30 +2216,13 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/tidyr.png" width="368" /></p>
 </div>
-<ul>
-<li><code>tidyr::nest</code></li>
-<li><code>tidyr::unnest</code></li>
-<li><code>tidyr::separate</code>/<code>tidyr::separate_rows</code></li>
-<li><code>tidyr::unite</code></li>
-<li><code>tidyr::crossing</code></li>
-<li><code>tidyr::drop_na</code></li>
-<li><code>tidyr::replace_na</code></li>
-</ul>
+<p><code>tidyr::nest</code>/<code>tidyr::unnest</code></p>
+<p><code>tidyr::unite</code>/<code>tidyr::separate</code> will either combine columns with a separator, or split to new columns based on a separator. <code>tidyr::separate_rows</code> will separate a column based on a separator but into separate rows, duplicating the related row data with it.</p>
+<p><code>tidyr::crossing</code> provides a mechanism to create all permutations by ‘crossing’ the values in two vectors. This is particularly useful when combined with <code>purrr</code> for running a function on all sub-groups within your data.</p>
+<p><code>tidyr::drop_na</code> is function that provides a way to remove rows that contain missing data. If a column(s) is specified rows are only removed if the missing data is in the specific columns.</p>
+<p><code>tidyr::replace_na</code> is a function that lets you specify replacement values for your missing values. The values are specified using a named list, with the names corresponding to the columns your want to replace the data in.</p>
 <section id="exercise-2" class="exercise">
 <h4>Exercise</h4>
-</section>
-<h3 id="forcats"><a href="https://forcats.tidyverse.org">forcats</a></h3>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="images/forcats.png" width="368" /></p>
-</div>
-<ul>
-<li><code>forcats::relevel</code></li>
-<li><code>forcats::reorder</code></li>
-<li><code>forcats::recode</code></li>
-</ul>
-<section id="exercise-3" class="exercise">
-<h4>Exercise</h4>
-<p>Use <code>forcats</code> to re-order your bar plot so that it is most frequent on the left, and least on the right.</p>
 </section>
 <h3 id="stringr"><a href="https://stringr.tidyverse.org">stringr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2263,7 +2233,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 <li><code>stringr::str_remove</code></li>
 <li><code>stringr::str_extract</code></li>
 </ul>
-<section id="exercise-4" class="exercise">
+<section id="exercise-3" class="exercise">
 <h4>Exercise</h4>
 </section>
 <h3 id="readr"><a href="https://readr.tidyverse.org">readr</a></h3>
@@ -2283,8 +2253,48 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2…</c
 </div>
 <pre><code>[1]   0.40  -6.00   5.00   0.01  24.00 300.00</code></pre>
 </div>
+<section id="exercise-4" class="exercise">
+<h4>Exercise</h4>
+</section>
+<h3 id="ggplot2"><a href="https://ggplot2.tidyverse.org">ggplot2</a></h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/ggplot2.png" width="368" /></p>
+</div>
+<p>The majority of <code>ggplot2</code> functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.</p>
+<p><code>ggplot2::theme_set</code> allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Set the theme to theme_bw for all following plots</span>
+<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="forcats"><a href="https://forcats.tidyverse.org">forcats</a></h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/forcats.png" width="368" /></p>
+</div>
+<ul>
+<li><code>forcats::relevel</code></li>
+<li><code>forcats::reorder</code></li>
+<li><code>forcats::recode</code></li>
+</ul>
 <section id="exercise-5" class="exercise">
 <h4>Exercise</h4>
+<p>Given the following code that creates a box plot, use <code>forcats</code> to re-order the boxes so that they are in descending order (longest flipper length on th left)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://allisonhorst.github.io/palmerpenguins/'>palmerpenguins</a></span><span class='op'>)</span>
+
+<span class='va'>penguins</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>drop_na</span><span class='op'>(</span><span class='va'>species</span>, <span class='va'>flipper_length_mm</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>species</span>, <span class='va'>flipper_length_mm</span><span class='op'>)</span>, 
+             y <span class='op'>=</span> <span class='va'>flipper_length_mm</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="moretidyverse_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
 </section>
 <h3 id="purrr"><a href="https://purrr.tidyverse.org">purrr</a></h3>
 <div class="layout-chunk" data-layout="l-body">

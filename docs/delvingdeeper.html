@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-07-01"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-07-01"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-07-05"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-05"/>
   <meta name="article:author" content="Murray Cadzow"/>
   <meta name="article:author" content="Matt Bixley"/>
 
@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Delving Deeper into R"]},{"type":"character","attributes":{},"value":["A deeper look into topics that get skipped.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"character","attributes":{},"value":["NeSI"]}]}]},{"type":"character","attributes":{},"value":["2021-07-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Delving Deeper into R"]},{"type":"character","attributes":{},"value":["A deeper look into topics that get skipped.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"character","attributes":{},"value":["NeSI"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2059,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Delving Deeper into R","description":"A deeper look into topics that get skipped.","authors":[{"author":"Murray Cadzow","authorURL":"https://github.com/murraycadzow","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-01T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
+{"title":"Delving Deeper into R","description":"A deeper look into topics that get skipped.","authors":[{"author":"Murray Cadzow","authorURL":"https://github.com/murraycadzow","affiliation":"University of Otago","affiliationURL":"#","orcidID":""},{"author":"Matt Bixley","authorURL":"#","affiliation":"NeSI","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-05T00:00:00.000+12:00","citationText":"Cadzow & Bixley, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2107,7 +2107,7 @@ Workshops
   
 ,   Matt Bixley  (NeSI)
   
-<br/>2021-07-01
+<br/>2021-07-05
 </div>
 
 <div class="d-article">
@@ -2115,13 +2115,17 @@ Workshops
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#atomics">Atomics</a>
+<ul>
+<li><a href="#empty-vectors">Empty vectors</a></li>
+<li><a href="#coercion">Coercion</a></li>
+<li><a href="#exercise">Exercise</a></li>
+</ul></li>
 <li><a href="#data-structures">Data structures</a>
 <ul>
 <li><a href="#structures">Structures</a></li>
-<li><a href="#atomics">Atomics</a></li>
 <li><a href="#subsetting">Subsetting</a></li>
 </ul></li>
-<li><a href="#exercises">Exercises</a></li>
 <li><a href="#functions">Functions</a></li>
 <li><a href="#iteration">Iteration</a>
 <ul>
@@ -2142,27 +2146,97 @@ Workshops
 <p>Description: This workshop will extend your understanding of R and cover how to interact with non-data.frame structured data such as vectors, matrices and lists. We’ll also look at creating your own functions and loops.</p>
 <p>Learning objectives:</p>
 <ul>
-<li>data structures
-<ul>
-<li>homogenous structures
-<ul>
-<li>vectors</li>
-<li>matrix</li>
-</ul></li>
-<li>heterogenous structures
-<ul>
-<li>lists</li>
-<li>data.frame/tibble</li>
-</ul></li>
-</ul></li>
-<li>create functions</li>
-<li>create loops</li>
-<li>creating/running scripts</li>
+<li>Understand the creation and subsetting of specific data structures</li>
+<li>Understand how to create functions</li>
+<li>Understand how to create loops</li>
+<li>Understand how to create and run an script</li>
 </ul>
+<p>This workshop will follow an explaination then try for yourself using exercises format</p>
+<p>Motivation: Many frustrations of dealing with R stem from not understanding how R is working ‘under-the-hood’. We want to explain some of the details that get skipped as part of introductory courses so that you understand what is going on and how to delve into some of the oddities. We also want to show you how to start being able to implement solutions in R to tackle your specific problems.</p>
+<h2 id="atomics">Atomics</h2>
+<p>This chapter is useful for additional information: <a href="https://adv-r.hadley.nz/vectors-chap.html" class="uri">https://adv-r.hadley.nz/vectors-chap.html</a></p>
+<p>4 main types of atomic vectors</p>
+<ul>
+<li>double</li>
+<li>integer</li>
+<li>logical</li>
+<li>character</li>
+</ul>
+<p><em>Double</em> and <em>integer</em> are collectively known as <em>numeric</em> vectors.</p>
+<p>Using <code>c()</code> to combine. <code>c()</code> is used to combine atomic vectors together, and when the arguments are all atomic vectors it flattens the structure</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>chr_vec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span><span class='op'>)</span>
+<span class='va'>chr_vec</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>chr_vec</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>chr_vec</span>, <span class='va'>chr_vec</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot; &quot;a&quot; &quot;b&quot;</code></pre>
+</div>
+<p>We can use <code>typeof</code> to find out the atomic type of our vectors</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>chr_vec</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
+<h3 id="empty-vectors">Empty vectors</h3>
+<p>We can create empty vectors of specific lengths using the atomic types</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/double.html'>double</a></span><span class='op'>(</span>length <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0 0</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span>length <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0 0 0</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>logical</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/double.html'>double</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>numeric(0)</code></pre>
+</div>
+<h3 id="coercion">Coercion</h3>
+<p>All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be coerced to the most flexible type. Types from least to most flexible are: logical -&gt; integer -&gt; double -&gt; character.</p>
+<p>We can explicitly use coercion on vectors with the <code>as.numeric</code>, <code>as.character</code>, and <code>as.logical</code> functions.</p>
+<section id="exercise" class="exercise">
+<h3>Exercise</h3>
+<p>Create the following vectors:</p>
+<ol type="1">
+<li>four numbers as a numeric called <code>my_nums</code></li>
+<li>six words of your choice as a character called <code>my_words</code></li>
+<li>an empty numeric vector of length 7 called <code>num_results</code>.</li>
+<li>an empty character vector of length 3 called <code>char_results</code>.</li>
+<li>combine the <code>my_nums</code> and <code>my_words</code> vectors into a single vector called <code>nums_words</code></li>
+</ol>
+<ul>
+<li>what type is this new vector?</li>
+</ul>
+<p>What do you notice are the values in the empty numeric and character vectors?</p>
+</section>
 <h2 id="data-structures">Data structures</h2>
-<p>Heavy reliance on content in <a href="http://adv-r.had.co.nz/Data-structures.html" class="uri">http://adv-r.had.co.nz/Data-structures.html</a></p>
+<p>This section is complimented by <a href="http://adv-r.had.co.nz/Data-structures.html" class="uri">http://adv-r.had.co.nz/Data-structures.html</a> for a more in depth understanding and explanation.</p>
 <h3 id="structures">Structures</h3>
-<p>Homogenous: vector, matrix</p>
+<p>In R there are two types of data structure, one for the storage of homogenous data i.e. the data has to be all of the same <em>type</em> such as <em>numeric</em>. The other is for the storage of heterogenous data i.e. the data can be of different types.</p>
+<p>The main structures for homogenous data are the 1 dimensional vector, and the 2d matrix. Fo a matrix it has the requirement to have either all columns of equal length, and all rows of equal length.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>example_vector</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>6</span><span class='op'>)</span>
@@ -2179,7 +2253,7 @@ Workshops
 [1,]    1    2    3    4    5
 [2,]    6    7    8    9   10</code></pre>
 </div>
-<p>Heterogenous: list, data.frame (tibble), data.table(?)</p>
+<p>The main heterogenous structures are the list and the data.frame (and tibble). A list is a series of elements and each can be of different data types and dimensions. It is a very versatile structure. A data.frame is a list of variables, with the same number of rows. Character vectors are converted to factors (from R v4+ this is no longer the default behaviour). A tibble is a special type of data.frame with a priority on printing and inspection and comes from the <code>tibble</code> package which is part of the <code>tidyverse</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>example_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='st'>"a"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2.3</span>, <span class='fl'>5.9</span><span class='op'>)</span><span class='op'>)</span>
@@ -2197,6 +2271,30 @@ Workshops
 
 [[4]]
 [1] 2.3 5.9</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>example_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>col1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span>, 
+                         col2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, 
+                         col3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>)</span>
+<span class='va'>example_df</span>
+</code></pre>
+</div>
+<pre><code>  col1 col2  col3
+1    a    1  TRUE
+2    b    2 FALSE
+3    c    3 FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>example_tib</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>col1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span>, 
+                              col2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>,
+                              col3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>)</span>
+<span class='va'>example_tib</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 3 x 3
+  col1   col2 col3 
+  &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
+1 a         1 TRUE 
+2 b         2 FALSE
+3 c         3 FALSE</code></pre>
 </div>
 <ul>
 <li><code>str</code></li>
@@ -2218,14 +2316,6 @@ Workshops
 </code></pre>
 </div>
 </div>
-<h3 id="atomics">Atomics</h3>
-<ul>
-<li>numeric</li>
-<li>logical</li>
-<li>character</li>
-</ul>
-<p>Coercion</p>
-<p>All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be coerced to the most flexible type. Types from least to most flexible are: logical -&gt; integer -&gt; double -&gt; character.</p>
 <h3 id="subsetting">Subsetting</h3>
 <p><a href="http://adv-r.had.co.nz/Subsetting.html" class="uri">http://adv-r.had.co.nz/Subsetting.html</a></p>
 <p>Subsetting operators:</p>
@@ -2378,7 +2468,9 @@ Workshops
 [[2]]
 [1] &quot;a&quot;</code></pre>
 </div>
-<h2 id="exercises">Exercises</h2>
+<section id="exercises" class="exercise">
+<h4>Exercises</h4>
+</section>
 <h2 id="functions">Functions</h2>
 <p>A function in R is comprised of four parts:</p>
 <ol type="1">
@@ -2449,6 +2541,15 @@ Workshops
     - calculate the mean of the gdp column</code></pre>
 <p>This abstraction of the problem now gives us the steps to follow and deals with the heart of the problem rather than having to worry about a specific implementation.</p>
 <h3 id="the-for-loop">The <code>for</code> Loop</h3>
+<h4 id="palmer-penguins-dataset">Palmer Penguins Dataset</h4>
+<p>We are going to use the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguins</a> dataset with our <code>for</code> loops. A set of Phenotypes from 3 Species and 3 Islands put together by Alison Horst</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://allisonhorst.github.io/palmerpenguins/'>"palmerpenguins"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"palmerpenguins"</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://allisonhorst.github.io/palmerpenguins/'>palmerpenguins</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <p><code>for</code> loops usually contain the following parts:</p>
 <ol type="1">
 <li>an <strong>output</strong> - somewhere to store the results from the loop</li>
@@ -2513,11 +2614,16 @@ Workshops
 <p>The duplication is apparent but not particularly laborious in this case. However, think about how this would scale. What if suddenly you needed to print the numbers 1 to 100, or 1000, or 10000? Using the copy-paste <code>print()</code> and manually filling in numbers is going to be pretty laborious and highly risky of typos. Using the <code>for</code> loop however, scales extremely easily and would be a matter of only changing what our collection of items going in was, everything else remains the same:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>for</span><span class='op'>(</span> <span class='va'>num</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span> <span class='op'>)</span><span class='op'>{</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>for</span><span class='op'>(</span> <span class='va'>num</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10000</span> <span class='op'>)</span><span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span> <span class='va'>num</span> <span class='op'>)</span>
 <span class='op'>}</span>
 </code></pre>
 </div>
+</div>
+<h4 id="exercise-1">Exercise</h4>
+<p>Print out <strong>the Column Names</strong> of the Penguins Dataset, 1 at a time.</p>
+<div class="layout-chunk" data-layout="l-body">
+
 </div>
 <h3 id="for-loop-with-indices"><code>for</code> loop with indices</h3>
 <p>One version of the <code>for</code> loop that you might encounter (especially in other languages) is a version that uses indices to determine the current item from the set. In this case rather than the loop variable using the values of the items themselves, it uses the index of the item in the collection. Traditionally the loop variable is called <code>i</code> in this situation. While you could specify the indices manually through a vector e.g. <code>1:5</code>, or <code>1:length(myvector)</code>, this can lead to some issues and the safer way is for R to generate the indices using <code>seq_along()</code> which returns a vector with all the indexes of your object.</p>
@@ -2543,10 +2649,15 @@ Workshops
 [1] &quot;number = 17 index (i) = 4&quot;
 [1] &quot;number = 19 index (i) = 5&quot;</code></pre>
 </div>
+<h4 id="exercise-2">Exercise</h4>
+<p>Using indices, caluclate the mean of the 2nd, 3rd and 5th Columns</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h3 id="nesting-of-loops">Nesting of loops</h3>
 <p>It’s generally recommended to avoid the nesting of loops within other loops. Let’s say the outer loop has a total of <code>n</code> iterations to get through and an inner loop has <code>m</code>. Every time we add one extra iteration of the outer loop we end up adding an extra <code>m</code> iterations of the inner loop, so the total number of iterations is <code>n * m</code>. Depending on how big <code>m</code> is, this could be adding thousands or millions of extra iterations, causing your code to take longer to run. Some times however, nesting is unavoidable but it’s a good idea to keep an eye out for nesting if your code is taking a while to run as this is usually the first place things can be sped up.</p>
 <h2 id="running-scripts">Running Scripts</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
