@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Delving Deeper into R"]},{"type":"character","attributes":{},"value":["A deeper look into topics that get skipped.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"character","attributes":{},"value":["NeSI"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Delving Deeper into R"]},{"type":"character","attributes":{},"value":["A deeper look into topics that get skipped.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"character","attributes":{},"value":["https://github.com/murraycadzow"]},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Matt Bixley"]},{"type":"character","attributes":{},"value":["NeSI"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2124,13 +2124,26 @@ Workshops
 <li><a href="#data-structures">Data structures</a>
 <ul>
 <li><a href="#structures">Structures</a></li>
-<li><a href="#subsetting">Subsetting</a></li>
+<li><a href="#subsetting">Subsetting</a>
+<ul>
+<li><a href="#conditional">Conditional</a></li>
+<li><a href="#positionalindex">Positional/Index</a></li>
+<li><a href="#differences-in-subset-operators">Differences in subset operators</a></li>
+<li><a href="#exercises">Exercises</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#functions">Functions</a></li>
 <li><a href="#iteration">Iteration</a>
 <ul>
-<li><a href="#the-for-loop">The <code>for</code> Loop</a></li>
-<li><a href="#for-loop-with-indices"><code>for</code> loop with indices</a></li>
+<li><a href="#the-for-loop">The <code>for</code> Loop</a>
+<ul>
+<li><a href="#palmer-penguins-dataset">Palmer Penguins Dataset</a></li>
+<li><a href="#exercise-1">Exercise</a></li>
+</ul></li>
+<li><a href="#for-loop-with-indices"><code>for</code> loop with indices</a>
+<ul>
+<li><a href="#exercise-2">Exercise</a></li>
+</ul></li>
 <li><a href="#nesting-of-loops">Nesting of loops</a></li>
 </ul></li>
 <li><a href="#running-scripts">Running Scripts</a></li>
@@ -2318,7 +2331,8 @@ Workshops
 </div>
 <h3 id="subsetting">Subsetting</h3>
 <p><a href="http://adv-r.had.co.nz/Subsetting.html" class="uri">http://adv-r.had.co.nz/Subsetting.html</a></p>
-<p>Subsetting operators:</p>
+<p>Subsetting operators: <code>[</code>, <code>[[</code>, and <code>$</code></p>
+<p>We’ll look at the differences between these operators later.</p>
 <p>There are two main methods of subsetting in R, the first is by specifying the numbered positions (index) from the data structure we have. The second is by providing a logical vector - usually created through a conditional statement.</p>
 <h4 id="conditional">Conditional</h4>
 <p>These statements rely on a test (condition/comparison) that results in a boolean (<code>TRUE</code>/<code>FALSE</code>) to determine what gets subsetted (or in the context of functions, run). Boolean logic operators can be used in to modify or combine tests to result in a single <code>TRUE</code> or <code>FALSE</code>.</p>
@@ -2513,7 +2527,7 @@ Workshops
 </div>
 <h4 id="differences-in-subset-operators">Differences in subset operators</h4>
 <p><code>[</code> (single square bracket) versus <code>[[</code> (double square bracket) versus <code>$</code> (dollar sign)</p>
-<p><code>[</code> will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the <code>[</code> for 1 dimensional structures. Be careful when subsetting factors.</p>
+<p><code>[</code> will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the <code>[</code> for 1 dimensional structures. Be careful when subsetting factors. For 2 dimensional structures the format is [row indexes, column indexes] for indexes or [condtion to select rows, condition to select columns] for the conditional based subsetting.</p>
 <p>Data.frame</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2711,9 +2725,13 @@ $item3
 <h4>Exercises</h4>
 <p>Using the starwars data (<code>dplyr::starwars</code>):</p>
 <ul>
-<li>Find</li>
-<li>Create a variable called <code>luke_films</code> and assign the list of films that Luke Skywalker was in to it</li>
-<li>Create a variable called <code>films</code> and assign it the entire contents of the <code>starwars$films</code> column using <code>[[</code></li>
+<li>Find all of the characters that are droids, and create a subset of the data with only their names, and heights.</li>
+<li>Create a variable called <code>luke_films</code> and assign to it the list of films that Luke Skywalker was in.</li>
+<li>Create a variable called <code>films</code> and assign it the entire contents of the <code>starwars$films</code> column using <code>[[</code>
+<ul>
+<li>Then name the list elements with the names of the characters they came from.</li>
+</ul></li>
+<li>What is the third starship of Obi-Wan Kenobi?</li>
 </ul>
 </section>
 <h2 id="functions">Functions</h2>
@@ -2775,7 +2793,7 @@ $item3
 <span class='co'># calculate the mean gdp from each country</span>
 <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>data_nzl</span><span class='op'>$</span><span class='va'>gdp</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>data_aus</span><span class='op'>$</span><span class='va'>gdp</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>data_usa</span><span class='op'>$</span><span class='va'>gsp</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>data_usa</span><span class='op'>$</span><span class='va'>gdp</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>

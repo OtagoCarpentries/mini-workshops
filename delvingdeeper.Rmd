@@ -13,7 +13,9 @@ date: "2021-07-05"
 output: 
   distill::distill_article:
     toc: yes
+    toc_depth: 4
     css: style.css
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -173,8 +175,9 @@ attributes(mtcars)
 
 http://adv-r.had.co.nz/Subsetting.html
 
-Subsetting operators:
+Subsetting operators: `[`, `[[`, and `$`
 
+We'll look at the differences between these operators later.
 
 
 
@@ -259,7 +262,7 @@ example_list[c(1,2)]
 
 `[` (single square bracket) versus `[[` (double square bracket) versus `$` (dollar sign)
 
-`[` will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the `[` for 1 dimensional structures. Be careful when subsetting factors.
+`[` will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the `[` for 1 dimensional structures. Be careful when subsetting factors. For 2 dimensional structures the format is [row indexes, column indexes] for indexes or [condtion to select rows, condition to select columns] for the conditional based subsetting. 
 
 Data.frame
 
@@ -338,9 +341,11 @@ str(my_df$c)
 
 Using the starwars data (`dplyr::starwars`):
 
-- Find
-- Create a variable called `luke_films` and assign the list of films that Luke Skywalker was in to it
+- Find all of the characters that are droids, and create a subset of the data with only their names, and heights.
+- Create a variable called `luke_films` and assign to it the list of films that Luke Skywalker was in.
 - Create a variable called `films` and assign it the entire contents of the `starwars$films` column using `[[`
+    - Then name the list elements with the names of the characters they came from.
+- What is the third starship of Obi-Wan Kenobi?
 
 </div>
 
@@ -407,7 +412,7 @@ data_usa <- read_csv("gapminder_countries/usa.csv")
 # calculate the mean gdp from each country
 mean(data_nzl$gdp)
 mean(data_aus$gdp)
-mean(data_usa$gsp)
+mean(data_usa$gdp)
 ```
 
 Notice that there is a lot of code duplication (`read_csv`, and `mean` are duplicated for each country).  In this example there is also the inclusion of a typo which is a very common mistake to make when changing inputs after copy and pasting - did you spot it? What happens if we need include another 20 or 100 countries? What happens if we also needed to calculate the median GDP for each? It quickly becomes quite laborious to scale. This is where iteration is useful, as it is all about providing a mechanism to specify how to repeat things.
