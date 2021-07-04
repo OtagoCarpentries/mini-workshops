@@ -1,13 +1,13 @@
 ---
 title: "Useful code snippets for everyday tasks"
 description: |
-  A new article created using the Distill format.
+  Helpful bits of code for life
 author:
   - name: Murray Cadzow 
     url: 
     affiliation: University of Otago
     affiliation_url: 
-date: "`r Sys.Date()`"
+date: "2021-07-07"
 output: 
   distill::distill_article:
     toc: yes
@@ -16,7 +16,11 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
+
+
+
 
 Time: 90 min
 
@@ -25,10 +29,26 @@ Description: This session will cover useful code snippets that are designed to i
 
 # R
 
-## Rprofile
+## Increasing Efficiency
+
+RStudio is the most popular environment for using R and so learning some keyboard shortcuts can make your life much nicer and prevent typos
+
+Useful keyboard shortcuts:
+
+- `alt` + `shift` + `K`: keyboard shortcut to display common keyboard shortcuts
+- `ctrl` + `shift` + `M`: insert magrittr pipe
+- `alt` + `-`: assignment arrow `<-`
+- `ctrl` + `alt` + `I`: insert R code chunk in Rmarkdown script
+- `ctrl` + `.`: jump to file/function
+- `ctrl` + `shift` + `.`: navigate through open scripts
+- `ctrl` + `shift` + `F10`: restart R
+
+### Rprofile
+
+
 
 ```{r, eval = FALSE}
-
+<- 
 # Load helper packages if using interactive session (doesn't alter your environment)
 # Don't add 'analysis' packages here
 if (interactive()) {
@@ -56,6 +76,43 @@ options(useFancyQuotes = FALSE)
 
 ## RMarkdown
 
+### Standard template:
+
+Below is the standard template I use for creating an Rmarkdown document.
+
+It creates a floating table of contents, and lets you toggle the code on or off, and also dates the report for when it is made.
+
+The first code chunk sets my default of echoing all of my code. The second will load the `tidyverse` which for me is pretty much always used and the `quitely = FALSE` means that I don't get the usual loading messages about conflicts coming through into my document.
+
+````
+---
+title: a cool title
+author: Murray Cadzow
+date: `r knitr::inline_expr("Sys.Date()")` 
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    code_folding: "show" # "hide" if code less important for audience
+---
+
+```{r setup, include=FALSE}`r ''` 
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}`r ''`
+library(tidyverse, quietly = TRUE)
+```
+
+````
+
+### Rmarkdown tricks
+
+Here are a couple of other Rmarkdown tricks that can be useful. The [RMarkdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) is a more comprehensive resource for these though.
+
+#### Selective evaluation of lines within a code chunk
+
 In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if you want to selectively run lines within a rmd code chunk you can exclude them explicitly:
 
 ````
@@ -76,11 +133,53 @@ In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if 
 5 # only this line will evaluate
 ```
 
+#### Creating verbatim code chunks
+
+Sometimes, such as in the creation of this workshop, there is a need to show the code chunk verbatim.  There is a section in the rmarkdown book about this and is extremely useful - 
+[https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html](https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html)
+
+To create verbatim code chunks, add `r knitr::inline_expr(" ''")`
+
+
+### Making better tables
+
+The `knitr` package provides a function to make alright looking standard tables with options for custom column names, alignments and rounding.
+
+```{r}
+library(knitr)
+mtcars %>% kable(caption = "A better table from knitr::kable")
+```
+
+
+
+
+```{r}
+mtcars %>% 
+  select(1:4) %>% 
+  head() %>% 
+  kable(caption = "A table caption", 
+        col.names = c("MPG", "Cylinders", "Displacement","Horse Power"))
+```
+
+`kableExtra` brings in extra table styling. Although this website formatting prevents this displaying as it should in a normal RMarkdown document. Check out [https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) for the documentation and examples for `kableExtra`.
+
+```{r}
+library(kableExtra)
+
+mtcars %>% 
+  select(1:4) %>% 
+  head() %>% 
+  kbl(caption = "A table caption", 
+        col.names = c("MPG", "Cylinders", "Displacement","Horse Power")) %>% 
+  row_spec(0, angle = -45) %>% 
+  kable_styling(bootstrap_options = "striped")
+```
+
 
 
 ## Workflow advice
 
-- here
+- `here`
 
 ```{r, eval = FALSE}
 library(here)
@@ -89,7 +188,7 @@ here()
 ```
 
 
-- janitor
+- `janitor`
 
 ```{r, eval = FALSE}
 library(janitor)
@@ -98,14 +197,15 @@ clean_names()
 ```
 
 
-- usethis
+- `usethis`
 
 ```{r, eval = FALSE}
 library(usethis)
 
-use_r()
-edit_r_profile()
-create_project()
+create_project(path = "path/to/new/project") # creates a new rstudio project and opens it
+use_r(name = "new_r_script") # creates a new script with the name provided
+edit_r_profile() # opens your Rprofile so you can edit it
+
 ```
 
 

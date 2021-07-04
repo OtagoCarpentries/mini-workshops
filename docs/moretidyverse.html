@@ -2116,15 +2116,21 @@ Workshops
 <ul>
 <li><a href="#core-tidyverse">Core Tidyverse</a><ul>
 <li><a href="#tibble"><span>tibble</span></a></li>
-<li><a href="#ggplot2"><span>ggplot2</span></a></li>
 <li><a href="#dplyr"><span>dplyr</span></a></li>
 <li><a href="#tidyr"><span>tidyr</span></a></li>
-<li><a href="#forcats"><span>forcats</span></a></li>
 <li><a href="#stringr"><span>stringr</span></a></li>
 <li><a href="#readr"><span>readr</span></a></li>
+<li><a href="#ggplot2"><span>ggplot2</span></a></li>
+<li><a href="#forcats"><span>forcats</span></a></li>
 <li><a href="#purrr"><span>purrr</span></a></li>
 </ul></li>
 <li><a href="#extra-tidyverse">Extra Tidyverse</a></li>
+<li><a href="#functional-programming">Functional Programming</a><ul>
+<li><a href="#map">Map</a><ul>
+<li><a href="#map-and-friends">Map and friends</a></li>
+<li><a href="#using-a-formula">Using a formula</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2138,7 +2144,7 @@ Workshops
 <blockquote>
 <p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. - <a href="https://www.tidyverse.org" class="uri">https://www.tidyverse.org</a></p>
 </blockquote>
-<p><a href="https://rstudio-education.github.io/tidyverse-cookbook/index.html" class="uri">https://rstudio-education.github.io/tidyverse-cookbook/index.html</a></p>
+<p>Two excellent resources: - <a href="https://r4ds.had.co.nz">R for Data Science</a> - <a href="https://rstudio-education.github.io/tidyverse-cookbook/index.html">Tidyverse Cookbook</a></p>
 <h2 id="core-tidyverse">Core Tidyverse</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2196,73 +2202,53 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2~</cod
 <h4 id="exercise">Exercise</h4>
 <p>Use <code>tribble()</code> to manually input some data</p>
 </div>
-<h3 id="ggplot2"><a href="https://ggplot2.tidyverse.org">ggplot2</a></h3>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="images/ggplot2.png" width="368" /></p>
-</div>
-<p>The majority of <code>ggplot2</code> functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.</p>
-<p><code>ggplot2::theme_set</code> allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Set the theme to theme_bw for all following plots</span>
-<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
 <h3 id="dplyr"><a href="https://dplyr.tidyverse.org">dplyr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/dplyr.png" width="368" /></p>
 </div>
 <p><code>dplyr::rename</code> provides the renaming ability of <code>dplyr::select</code> but it doesn’t subset.</p>
 <p><code>dplyr::transmute</code> is similar to <code>dplyr::mutate</code> except only columns specified are kept.</p>
-<p><code>dplyr::starts_with</code>/<code>dplyr::contains</code>/<code>dplyr::ends_with</code> are useful helper functions to enable easy selection of columns.</p>
+<p><code>dplyr::everything</code>/<code>dplyr::starts_with</code>/<code>dplyr::contains</code>/<code>dplyr::ends_with</code> are useful helper functions to enable easy selection of columns. These functions technically live in the <code>tidyselect</code> package, along with <code>tidyselect::where</code>. <code>tidyselect::where</code> can be used to supply a conditional type function such as <code>is.numeric</code> to enable the selection of columns.</p>
 <p><code>dplyr::relocate</code> is a very useful function that enables you to relocate columns to specific locations. It uses a <code>.before</code> or <code>.after</code> argument to specify where you to more the column(s) to.</p>
-<p><code>dplyr::across</code> lets you apply a function or functions across multiple columns. This is usually used in conjunction with <code>dplyr::summarise</code> or <code>dplyr::mutate</code>.</p>
+<p><code>dplyr::across</code> lets you apply a function or functions across multiple columns. For applying a function based on data type, pair with <code>tidyselect::where</code>. This is usually used as part of a <code>dplyr::summarise</code> or <code>dplyr::mutate</code> statement.</p>
 <p><code>dplyr::c_across</code> lets you combine values from across multiple columns, such as performing a summarising function on select columns.</p>
 <p><code>dplyr::case_when</code> is useful in situations where you would have multiple ifelses.</p>
 <div class="exercise">
 <h4 id="exercise-1">Exercise</h4>
+<ul>
+<li>Using the <code>dplyr::starwars</code> dataset, calculate the mean across all numeric columns for each species.</li>
+</ul>
 </div>
 <h3 id="tidyr"><a href="https://tidyr.tidyverse.org">tidyr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/tidyr.png" width="368" /></p>
 </div>
-<ul>
-<li><code>tidyr::nest</code></li>
-<li><code>tidyr::unnest</code></li>
-<li><code>tidyr::separate</code>/<code>tidyr::separate_rows</code></li>
-<li><code>tidyr::unite</code></li>
-<li><code>tidyr::crossing</code></li>
-<li><code>tidyr::drop_na</code></li>
-<li><code>tidyr::replace_na</code></li>
-</ul>
+<p><code>tidyr::nest</code> will for per row, condense the specified columns into a list, which is stored in a single column (list column). <code>tidyr::unnest</code> will take the elements from a list column into their own columns. These functions are particularly useful in conjunction with <code>pivot_longer</code>/<code>pivot_wider</code></p>
+<p><code>tidyr::unite</code>/<code>tidyr::separate</code> will either combine columns with a separator, or split to new columns based on a separator. <code>tidyr::separate_rows</code> will separate a column based on a separator but into separate rows, duplicating the related row data with it.</p>
+<p><code>tidyr::crossing</code> provides a mechanism to create all permutations by ‘crossing’ the values in two vectors. This is particularly useful when combined with <code>purrr</code> for running a function on all sub-groups within your data.</p>
+<p><code>tidyr::drop_na</code> is function that provides a way to remove rows that contain missing data. If a column(s) is specified rows are only removed if the missing data is in the specific columns.</p>
+<p><code>tidyr::replace_na</code> is a function that lets you specify replacement values for your missing values. The values are specified using a named list, with the names corresponding to the columns your want to replace the data in.</p>
 <div class="exercise">
 <h4 id="exercise-2">Exercise</h4>
-</div>
-<h3 id="forcats"><a href="https://forcats.tidyverse.org">forcats</a></h3>
+<p>Create a data.frame/tibble from the starwars dataset which shows one character/film combo per row for all the films and characters.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/forcats.png" width="368" /></p>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># starwars dataset</span>
+<span class='fu'>dplyr</span><span class='fu'>::</span><span class='va'><a href='https://dplyr.tidyverse.org/reference/starwars.html'>starwars</a></span>
+</code></pre>
 </div>
-<ul>
-<li><code>forcats::relevel</code></li>
-<li><code>forcats::reorder</code></li>
-<li><code>forcats::recode</code></li>
-</ul>
-<div class="exercise">
-<h4 id="exercise-3">Exercise</h4>
-<p>Use <code>forcats</code> to re-order your bar plot so that it is most frequent on the left, and least on the right.</p>
+</div>
 </div>
 <h3 id="stringr"><a href="https://stringr.tidyverse.org">stringr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/stringr.png" width="368" /></p>
 </div>
-<ul>
-<li><code>stringr::str_detect</code></li>
-<li><code>stringr::str_remove</code></li>
-<li><code>stringr::str_extract</code></li>
-</ul>
+<p><code>stringr::str_detect</code> lets you use regular expressions or straight text to check to see if it is in any of the values of a column and returns a logical vector. This function is very useful to use as part of a <code>dplyr::filter</code>.</p>
+<p><code>stringr::str_remove</code> will remove the first instance of the text that matches the pattern from the values in your column, <code>stringr::str_remove_all</code> will remove all instances.</p>
+<p><code>stringr::str_extract</code> does the opposite of <code>stringr::str_remove</code>, in that it returns the first instance of the text that matches the pattern, <code>stringr::str_extract_all</code> will return all instances of the matches.</p>
 <div class="exercise">
-<h4 id="exercise-4">Exercise</h4>
+<h4 id="exercise-3">Exercise</h4>
+<p>From the dplyr::starwars data, find all of the characters that have ‘grey’ as part of their skin colour description. How many different descriptions are there that contain ‘grey’?</p>
 </div>
 <h3 id="readr"><a href="https://readr.tidyverse.org">readr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2281,32 +2267,99 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2~</cod
 </div>
 <pre><code>[1]   0.40  -6.00   5.00   0.01  24.00 300.00</code></pre>
 </div>
+<h3 id="ggplot2"><a href="https://ggplot2.tidyverse.org">ggplot2</a></h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/ggplot2.png" width="368" /></p>
+</div>
+<p>The majority of <code>ggplot2</code> functions are specific to the type of visualisation that is being created and well covered by the cheatsheet. There is one however that can be very helpful to know about.</p>
+<p><code>ggplot2::theme_set</code> allows you to apply a theme to all of your ggplots. It would usually be called near the start of a script.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Set the theme to theme_bw for all following plots</span>
+<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="forcats"><a href="https://forcats.tidyverse.org">forcats</a></h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/forcats.png" width="368" /></p>
+</div>
+<p><code>forcats::reorder</code> lets you reorder your factor levels by sorting against another variable. <code>forcats::reorder2</code> is the same as <code>reorder</code> but you can use two variables. The default function for sorting is based on the median.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>color</span>,     <span class='op'>~</span><span class='va'>a</span>, <span class='op'>~</span><span class='va'>b</span>,
+  <span class='st'>"blue"</span>,      <span class='fl'>1</span>,  <span class='fl'>2</span>,
+  <span class='st'>"green"</span>,     <span class='fl'>6</span>,  <span class='fl'>2</span>,
+  <span class='st'>"purple"</span>,    <span class='fl'>3</span>,  <span class='fl'>3</span>,
+  <span class='st'>"red"</span>,       <span class='fl'>2</span>,  <span class='fl'>3</span>,
+  <span class='st'>"yellow"</span>,    <span class='fl'>5</span>,  <span class='fl'>1</span>
+<span class='op'>)</span>
+<span class='va'>df</span><span class='op'>$</span><span class='va'>color</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span><span class='op'>)</span>
+<span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>a</span>, <span class='va'>min</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  purple red    yellow
+Levels: blue red purple yellow green</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>fct_reorder2</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>color</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>a</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>b</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  purple red    yellow
+Levels: purple red blue green yellow</code></pre>
+</div>
+<p><code>forcats::infreq</code> will reorder the factor levels based on the frequency of the observations (highest first), and <code>forcats::fct_rev</code> will reverse that order (lowest first).</p>
+<p><code>forcats::relevel</code> lets you manually reorder the levels in your factor. This is useful for when you want to move a particular level such as <code>NA</code> to the end.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_fct</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>,<span class='st'>"green"</span>,<span class='st'>"blue"</span>, <span class='st'>"none"</span>, <span class='st'>"blue"</span>, <span class='st'>"purple"</span>, <span class='st'>"purple"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_fct</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: blue green none purple</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>my_fct</span>, <span class='st'>"none"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: none blue green purple</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># send to the end</span>
+<span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>my_fct</span>, <span class='st'>"none"</span>, after <span class='op'>=</span> <span class='cn'>Inf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] blue   green  blue   none   blue   purple purple
+Levels: blue green purple none</code></pre>
+</div>
 <div class="exercise">
-<h4 id="exercise-5">Exercise</h4>
+<h4 id="exercise-4">Exercise</h4>
+<p>Alter the following code that creates a bar plot to use <code>forcats</code> to re-order the bars the species of penguins are ordered by frequency, lowest on the left.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://allisonhorst.github.io/palmerpenguins/'>palmerpenguins</a></span><span class='op'>)</span>
+
+<span class='va'>penguins</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>species</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_bar</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 </div>
 <h3 id="purrr"><a href="https://purrr.tidyverse.org">purrr</a></h3>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/purrr.png" width="368" /></p>
 </div>
-<ul>
-<li><code>purrr::map</code></li>
-<li><code>purrr::walk</code></li>
-<li><code>purrr::transpose</code></li>
-<li><code>purrr::keep</code>/<code>purrr::discard</code>/<code>purrr::pluck</code></li>
-</ul>
-<div class="exercise">
-<h4 id="exercise-6">Exercise</h4>
-</div>
+<p>We’ll cover <code>purrr</code> in <a href="#functional-programming">Functional Programming</a></p>
 <h2 id="extra-tidyverse">Extra Tidyverse</h2>
 <ul>
-<li>readxl</li>
 <li>googlesheets4</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidyverse/googlesheets4'>googlesheets4</a></span><span class='op'>)</span>
 
-<span class='co'># grab the url from the browser for your sheet</span>
+<span class='co'># grab the url from the browser for your sheet (specific to a sheet)</span>
 <span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"https://docs.google.com/spreadsheets/d/1MbE2_XUfQ9KwfKAJhEDPb6KgOg2EaoXr5IN2F-hjBNI/edit#gid=0"</span>
 
 <span class='co'># read the sheet in</span>
@@ -2316,6 +2369,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2~</cod
 </div>
 <p>The first time running <code>read_sheet</code> you will be asked to authenticate and a web broswer will open up.</p>
 <ul>
+<li>readxl</li>
 <li>lubridate
 <ul>
 <li><code>lubridate::ymd</code></li>
@@ -2333,7 +2387,122 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2~</cod
 <li>dtplyr</li>
 <li>dbplyr</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="functional-programming">Functional Programming</h1>
+<h2 id="map">Map</h2>
+<p>From the package <code>purrr</code> (part of the tidyverse), there are a collection of <code>map</code> functions which are a method of iterating over a collection of things applying a function. This is known as <em>functional programming</em>, and allows us to extract the code that is in common for a loop, into a function, so rather than being concerned about the set-up of the loop, we can focus on the contents of the loop. This idea of mapping a function onto data is extremely similar to the concept underlying the <code>for</code> loop.</p>
+<h3 id="map-and-friends">Map and friends</h3>
+<p>The package <code>purrr</code> within the tidyverse provides the <code>map</code> functions that take a vector or list as the first argument, and the second argument is the function to be run on each item in the vector or list. The object that is returned back with the results depends on the exact version of <code>map</code> that is called, the default <code>map()</code> returns the results as items in a list, but there are suffix versions of <code>map</code> that will return the results back in a specified data type.</p>
+<ul>
+<li><code>map()</code> makes a list.</li>
+<li><code>map_lgl()</code> makes a logical vector.</li>
+<li><code>map_int()</code> makes an integer vector.</li>
+<li><code>map_dbl()</code> makes a double vector.</li>
+<li><code>map_chr()</code> makes a character vector.</li>
+</ul>
+<p>These suffix versions will give an error if the data type of the results doesn’t match. This is useful for being able to program with, as it means that you can be sure that you have a particular data type for future code. Some of the base R functions that you will meet in the next section don’t provide this guarantee. The arguments to the <code>map</code> functions are <code>.x</code> which is the vector or list input, and <code>.f</code> which is the name of the function. if the supplied function takes multiple arguments these can be passed in as extra arguments to <code>map</code>.</p>
+<p>We could use the example of converting some temperatures to demonstrate</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://purrr.tidyverse.org'>purrr</a></span><span class='op'>)</span>
+
+<span class='va'>farenheit_to_celcius</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>temp_f</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>temp_c</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>temp_f</span> <span class='op'>-</span><span class='fl'>32</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>5</span><span class='op'>/</span><span class='fl'>9</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>temp_c</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>my_temps_f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>90</span>, <span class='fl'>78</span>, <span class='fl'>88</span>, <span class='fl'>89</span>, <span class='fl'>77</span><span class='op'>)</span>
+
+<span class='co'># gives back a list</span>
+<span class='va'>my_temps_c_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span>.x <span class='op'>=</span> <span class='va'>my_temps_f</span>, .f <span class='op'>=</span> <span class='va'>farenheit_to_celcius</span><span class='op'>)</span>
+<span class='va'>my_temps_c_list</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 32.22222
+
+[[2]]
+[1] 25.55556
+
+[[3]]
+[1] 31.11111
+
+[[4]]
+[1] 31.66667
+
+[[5]]
+[1] 25</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># gives back a vector of type numeric/double</span>
+<span class='va'>my_temps_c_dbl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_dbl</a></span><span class='op'>(</span>.x <span class='op'>=</span> <span class='va'>my_temps_f</span>, .f <span class='op'>=</span> <span class='va'>farenheit_to_celcius</span><span class='op'>)</span>
+<span class='va'>my_temps_c_dbl</span>
+</code></pre>
+</div>
+<pre><code>[1] 32.22222 25.55556 31.11111 31.66667 25.00000</code></pre>
+</div>
+<p>When using <code>map</code> and variants, don’t include the <code>()</code>’s on the function name, if you do you’ll get this error:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span>.x <span class='op'>=</span> <span class='va'>my_temps_f</span>, .f <span class='op'>=</span> <span class='fu'>farenheit_to_celcius</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in farenheit_to_celcius(): argument &quot;temp_f&quot; is missing, with no default</code></pre>
+</div>
+<h3 id="using-a-formula">Using a formula</h3>
+<p>You can create anonymous functions for <code>purrr</code> to use.</p>
+<p>For instance, what if you had a list containing multiple weeks of temperatures and you wanted to find the mean temp per week.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>monthly_temps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>week1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>,<span class='fl'>21</span>,<span class='fl'>23</span>,<span class='cn'>NA</span><span class='op'>)</span>, 
+                      week2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>,<span class='fl'>16</span>,<span class='fl'>14</span>,<span class='fl'>17</span>,<span class='fl'>20</span><span class='op'>)</span>, 
+                      week3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>17</span>,<span class='fl'>15</span>,<span class='cn'>NA</span>,<span class='fl'>17</span>,<span class='fl'>18</span>,<span class='fl'>14</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>monthly_temps</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$week1
+[1] NA
+
+$week2
+[1] 16.4
+
+$week3
+[1] NA</code></pre>
+</div>
+<p>Because we have <code>NA</code>s mean returns <code>NA</code>. We could define a new version of <code>mean</code> that removes <code>NA</code>s</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mean_na_rm</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>monthly_temps</span>, <span class='va'>mean_na_rm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$week1
+[1] 21.33333
+
+$week2
+[1] 16.4
+
+$week3
+[1] 16.2</code></pre>
+</div>
+<p>But we can also use the formula syntax to create an anonymous function using the <code>~</code>, and with the similar idea as <code>.</code> for data in pipes, we use <code>.x</code> to represent the data in our function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>monthly_temps</span>, <span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>.x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$week1
+[1] 21.33333
+
+$week2
+[1] 16.4
+
+$week3
+[1] 16.2</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

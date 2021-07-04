@@ -88,31 +88,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Mini-Workshops: Useful code snippets for everyday tasks</title>
   
-  <meta property="description" itemprop="description" content="A new article created using the Distill format."/>
+  <meta property="description" itemprop="description" content="Helpful bits of code for life"/>
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-07-05"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-07-05"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-07-07"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-07"/>
   <meta name="article:author" content="Murray Cadzow"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Mini-Workshops: Useful code snippets for everyday tasks"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A new article created using the Distill format."/>
+  <meta property="og:description" content="Helpful bits of code for life"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Mini-Workshops"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Mini-Workshops: Useful code snippets for everyday tasks"/>
-  <meta property="twitter:description" content="A new article created using the Distill format."/>
+  <meta property="twitter:description" content="Helpful bits of code for life"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Useful code snippets for everyday tasks"]},{"type":"character","attributes":{},"value":["A new article created using the Distill format.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Useful code snippets for everyday tasks"]},{"type":"character","attributes":{},"value":["Helpful bits of code for life\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Murray Cadzow"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["University of Otago"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["2021-07-07"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","css"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["style.css"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2059,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Useful code snippets for everyday tasks","description":"A new article created using the Distill format.","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-05T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
+{"title":"Useful code snippets for everyday tasks","description":"Helpful bits of code for life","authors":[{"author":"Murray Cadzow","authorURL":"#","affiliation":"University of Otago","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-07T00:00:00.000+12:00","citationText":"Cadzow, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2099,13 +2099,13 @@ Workshops
 <h1>Useful code snippets for everyday tasks</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A new article created using the Distill format.</p></p>
+<p><p>Helpful bits of code for life</p></p>
 </div>
 
 <div class="d-byline">
   Murray Cadzow  (University of Otago)
   
-<br/>2021-07-05
+<br/>2021-07-07
 </div>
 
 <div class="d-article">
@@ -2114,8 +2114,14 @@ Workshops
 <h3>Contents</h3>
 <ul>
 <li><a href="#r">R</a><ul>
+<li><a href="#increasing-efficiency">Increasing Efficiency</a><ul>
 <li><a href="#rprofile">Rprofile</a></li>
-<li><a href="#rmarkdown">RMarkdown</a></li>
+</ul></li>
+<li><a href="#rmarkdown">RMarkdown</a><ul>
+<li><a href="#standard-template">Standard template:</a></li>
+<li><a href="#rmarkdown-tricks">Rmarkdown tricks</a></li>
+<li><a href="#making-better-tables">Making better tables</a></li>
+</ul></li>
 <li><a href="#workflow-advice">Workflow advice</a></li>
 </ul></li>
 <li><a href="#bash">Bash</a><ul>
@@ -2132,34 +2138,71 @@ Workshops
 <p>Time: 90 min</p>
 <p>Description: This session will cover useful code snippets that are designed to improve your overall experience doing computational research. This will include how to customise your BASH and R environments, useful keyboard short cuts, and short pieces of code to do common tasks e.g. read a directory of files into R.</p>
 <h1 id="r">R</h1>
-<h2 id="rprofile">Rprofile</h2>
+<h2 id="increasing-efficiency">Increasing Efficiency</h2>
+<p>RStudio is the most popular environment for using R and so learning some keyboard shortcuts can make your life much nicer and prevent typos</p>
+<p>Useful keyboard shortcuts:</p>
+<ul>
+<li><code>alt</code> + <code>shift</code> + <code>K</code>: keyboard shortcut to display common keyboard shortcuts</li>
+<li><code>ctrl</code> + <code>shift</code> + <code>M</code>: insert magrittr pipe</li>
+<li><code>alt</code> + <code>-</code>: assignment arrow <code>&lt;-</code></li>
+<li><code>ctrl</code> + <code>alt</code> + <code>I</code>: insert R code chunk in Rmarkdown script</li>
+<li><code>ctrl</code> + <code>.</code>: jump to file/function</li>
+<li><code>ctrl</code> + <code>shift</code> + <code>.</code>: navigate through open scripts</li>
+<li><code>ctrl</code> + <code>shift</code> + <code>F10</code>: restart R</li>
+</ul>
+<h3 id="rprofile">Rprofile</h3>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Load helper packages if using interactive session (doesn't alter your environment)</span>
-<span class='co'># Don't add 'analysis' packages here</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://devtools.r-lib.org/'>devtools</a></span><span class='op'>)</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://testthat.r-lib.org'>testthat</a></span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'># set CRAN</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>repos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>CRAN <span class='op'>=</span> <span class='st'>"https://cloud.r-project.org/"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># warn on partial matches</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>
-  warnPartialMatchArgs <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  warnPartialMatchDollar <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  warnPartialMatchAttr <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='co'># fancy quotes are annoying and lead to</span>
-<span class='co'># 'copy + paste' bugs / frustrations</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>useFancyQuotes <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>&lt;-<span class="st"> </span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># Load helper packages if using interactive session (doesn&#39;t alter your environment)</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Don&#39;t add &#39;analysis&#39; packages here</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="cf">if</span> (<span class="kw">interactive</span>()) {</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="kw">suppressMessages</span>(<span class="kw">require</span>(devtools))</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="kw">suppressMessages</span>(<span class="kw">require</span>(usethis))</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="kw">suppressMessages</span>(<span class="kw">require</span>(testthat))</span>
+<span id="cb1-8"><a href="#cb1-8"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># set CRAN</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">options</span>(<span class="dt">repos =</span> <span class="kw">c</span>(<span class="dt">CRAN =</span> <span class="st">&quot;https://cloud.r-project.org/&quot;</span>))</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># warn on partial matches</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="kw">options</span>(</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="dt">warnPartialMatchArgs =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="dt">warnPartialMatchDollar =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="dt">warnPartialMatchAttr =</span> <span class="ot">TRUE</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co"># fancy quotes are annoying and lead to</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># &#39;copy + paste&#39; bugs / frustrations</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="kw">options</span>(<span class="dt">useFancyQuotes =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <h2 id="rmarkdown">RMarkdown</h2>
+<h3 id="standard-template">Standard template:</h3>
+<p>Below is the standard template I use for creating an Rmarkdown document.</p>
+<p>It creates a floating table of contents, and lets you toggle the code on or off, and also dates the report for when it is made.</p>
+<p>The first code chunk sets my default of echoing all of my code. The second will load the <code>tidyverse</code> which for me is pretty much always used and the <code>quitely = FALSE</code> means that I don’t get the usual loading messages about conflicts coming through into my document.</p>
+<pre><code>---
+title: a cool title
+author: Murray Cadzow
+date: `r Sys.Date()` 
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    code_folding: &quot;show&quot; # &quot;hide&quot; if code less important for audience
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse, quietly = TRUE)
+```
+</code></pre>
+<h3 id="rmarkdown-tricks">Rmarkdown tricks</h3>
+<p>Here are a couple of other Rmarkdown tricks that can be useful. The <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">RMarkdown cookbook</a> is a more comprehensive resource for these though.</p>
+<h4 id="selective-evaluation-of-lines-within-a-code-chunk">Selective evaluation of lines within a code chunk</h4>
 <p>In rmd the code chunk <code>eval</code> option takes more than just <code>TRUE</code> or <code>FALSE</code> - if you want to selectively run lines within a rmd code chunk you can exclude them explicitly:</p>
 <pre><code>```{r, eval = c(-1,-3)}
 1
@@ -2179,9 +2222,698 @@ Workshops
 </div>
 <pre><code>[1] 5</code></pre>
 </div>
+<h4 id="creating-verbatim-code-chunks">Creating verbatim code chunks</h4>
+<p>Sometimes, such as in the creation of this workshop, there is a need to show the code chunk verbatim. There is a section in the rmarkdown book about this and is extremely useful - <a href="https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html">https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html</a></p>
+<p>To create verbatim code chunks, add <code>r  ''</code></p>
+<h3 id="making-better-tables">Making better tables</h3>
+<p>The <code>knitr</code> package provides a function to make alright looking standard tables with options for custom column names, alignments and rounding.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span>
+<span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"A better table from knitr::kable"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 1: </span>A better table from knitr::kable</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160.0</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160.0</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108.0</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258.0</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360.0</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225.0</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Duster 360</td>
+<td style="text-align: right;">14.3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360.0</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">3.21</td>
+<td style="text-align: right;">3.570</td>
+<td style="text-align: right;">15.84</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merc 240D</td>
+<td style="text-align: right;">24.4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">146.7</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">3.69</td>
+<td style="text-align: right;">3.190</td>
+<td style="text-align: right;">20.00</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Merc 230</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">140.8</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">3.92</td>
+<td style="text-align: right;">3.150</td>
+<td style="text-align: right;">22.90</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merc 280</td>
+<td style="text-align: right;">19.2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">167.6</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">3.92</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">18.30</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Merc 280C</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">167.6</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">3.92</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">18.90</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merc 450SE</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">275.8</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">3.07</td>
+<td style="text-align: right;">4.070</td>
+<td style="text-align: right;">17.40</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Merc 450SL</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">275.8</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">3.07</td>
+<td style="text-align: right;">3.730</td>
+<td style="text-align: right;">17.60</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merc 450SLC</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">275.8</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">3.07</td>
+<td style="text-align: right;">3.780</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cadillac Fleetwood</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">472.0</td>
+<td style="text-align: right;">205</td>
+<td style="text-align: right;">2.93</td>
+<td style="text-align: right;">5.250</td>
+<td style="text-align: right;">17.98</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lincoln Continental</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">460.0</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">5.424</td>
+<td style="text-align: right;">17.82</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chrysler Imperial</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">440.0</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">3.23</td>
+<td style="text-align: right;">5.345</td>
+<td style="text-align: right;">17.42</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fiat 128</td>
+<td style="text-align: right;">32.4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">78.7</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">4.08</td>
+<td style="text-align: right;">2.200</td>
+<td style="text-align: right;">19.47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Honda Civic</td>
+<td style="text-align: right;">30.4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">75.7</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">4.93</td>
+<td style="text-align: right;">1.615</td>
+<td style="text-align: right;">18.52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Toyota Corolla</td>
+<td style="text-align: right;">33.9</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">71.1</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">4.22</td>
+<td style="text-align: right;">1.835</td>
+<td style="text-align: right;">19.90</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toyota Corona</td>
+<td style="text-align: right;">21.5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">120.1</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">3.70</td>
+<td style="text-align: right;">2.465</td>
+<td style="text-align: right;">20.01</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dodge Challenger</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">318.0</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.520</td>
+<td style="text-align: right;">16.87</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AMC Javelin</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">304.0</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.435</td>
+<td style="text-align: right;">17.30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Camaro Z28</td>
+<td style="text-align: right;">13.3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">350.0</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">3.73</td>
+<td style="text-align: right;">3.840</td>
+<td style="text-align: right;">15.41</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pontiac Firebird</td>
+<td style="text-align: right;">19.2</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">400.0</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.845</td>
+<td style="text-align: right;">17.05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fiat X1-9</td>
+<td style="text-align: right;">27.3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">79.0</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">4.08</td>
+<td style="text-align: right;">1.935</td>
+<td style="text-align: right;">18.90</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Porsche 914-2</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">120.3</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">4.43</td>
+<td style="text-align: right;">2.140</td>
+<td style="text-align: right;">16.70</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lotus Europa</td>
+<td style="text-align: right;">30.4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">95.1</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">3.77</td>
+<td style="text-align: right;">1.513</td>
+<td style="text-align: right;">16.90</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ford Pantera L</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">351.0</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: right;">4.22</td>
+<td style="text-align: right;">3.170</td>
+<td style="text-align: right;">14.50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ferrari Dino</td>
+<td style="text-align: right;">19.7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">145.0</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.62</td>
+<td style="text-align: right;">2.770</td>
+<td style="text-align: right;">15.50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maserati Bora</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">301.0</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">3.54</td>
+<td style="text-align: right;">3.570</td>
+<td style="text-align: right;">14.60</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Volvo 142E</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">121.0</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">4.11</td>
+<td style="text-align: right;">2.780</td>
+<td style="text-align: right;">18.60</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"A table caption"</span>, 
+        col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MPG"</span>, <span class='st'>"Cylinders"</span>, <span class='st'>"Displacement"</span>,<span class='st'>"Horse Power"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 2: </span>A table caption</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">MPG</th>
+<th style="text-align: right;">Cylinders</th>
+<th style="text-align: right;">Displacement</th>
+<th style="text-align: right;">Horse Power</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>kableExtra</code> brings in extra table styling. Although this website formatting prevents this displaying as it should in a normal RMarkdown document. Check out <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html</a> for the documentation and examples for <code>kableExtra</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://haozhu233.github.io/kableExtra/'>kableExtra</a></span><span class='op'>)</span>
+
+<span class='va'>mtcars</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kbl.html'>kbl</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"A table caption"</span>, 
+        col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MPG"</span>, <span class='st'>"Cylinders"</span>, <span class='st'>"Displacement"</span>,<span class='st'>"Horse Power"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/row_spec.html'>row_spec</a></span><span class='op'>(</span><span class='fl'>0</span>, angle <span class='op'>=</span> <span class='op'>-</span><span class='fl'>45</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kable_styling.html'>kable_styling</a></span><span class='op'>(</span>bootstrap_options <span class='op'>=</span> <span class='st'>"striped"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-5">Table 3: </span>A table caption
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
+</th>
+<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
+MPG
+</th>
+<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
+Cylinders
+</th>
+<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
+Displacement
+</th>
+<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
+Horse Power
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valiant
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+225
+</td>
+<td style="text-align:right;">
+105
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="workflow-advice">Workflow advice</h2>
 <ul>
-<li>here</li>
+<li><code>here</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2192,7 +2924,7 @@ Workshops
 </div>
 </div>
 <ul>
-<li>janitor</li>
+<li><code>janitor</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2203,15 +2935,15 @@ Workshops
 </div>
 </div>
 <ul>
-<li>usethis</li>
+<li><code>usethis</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'><a href='https://usethis.r-lib.org/reference/edit.html'>edit_r_profile</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'><a href='https://usethis.r-lib.org/reference/create_package.html'>create_project</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://usethis.r-lib.org/reference/create_package.html'>create_project</a></span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"path/to/new/project"</span><span class='op'>)</span> <span class='co'># creates a new rstudio project and opens it</span>
+<span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"new_r_script"</span><span class='op'>)</span> <span class='co'># creates a new script with the name provided</span>
+<span class='fu'><a href='https://usethis.r-lib.org/reference/edit.html'>edit_r_profile</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># opens your Rprofile so you can edit it</span>
 </code></pre>
 </div>
 </div>
@@ -2224,7 +2956,7 @@ Workshops
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"*.csv"</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='va'>my_csvs</span> <span class='op'>&lt;-</span> <span class='fu'>map</span><span class='op'>(</span><span class='va'>files</span>, <span class='va'>read_csv</span><span class='op'>)</span>
+<span class='va'>my_csvs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>files</span>, <span class='va'>read_csv</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -4711,7 +5443,7 @@ Volvo 142E
 <p>This can be written in your <code>.bashrc</code> so that you can use them in new sessions. These can be very useful but remember they are only available on machines you have been able to customise your <code>.bashrc</code>.</p>
 <h1 id="python">Python</h1>
 <p>Virtual environments - conda - conda create - conda activate - conda deactivate</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

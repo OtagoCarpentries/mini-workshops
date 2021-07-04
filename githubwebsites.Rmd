@@ -6,8 +6,12 @@ author:
   - name: Murray Cadzow 
     url: 
     affiliation: University of Otago
+    affiliation_url:
+  - name: Hugh Cross 
+    url: 
+    affiliation: University of Otago
     affiliation_url: 
-date: "`r Sys.Date()`"
+date: "2021-07-06"
 output: 
   distill::distill_article:
     toc: yes

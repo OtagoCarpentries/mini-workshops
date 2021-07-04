@@ -9,11 +9,13 @@ author:
     affiliation_url:
   - name: Matt Bixley
     affiliation: NeSI 
-date: "`r Sys.Date()`"
+date: "2021-07-05"
 output: 
   distill::distill_article:
     toc: yes
+    toc_depth: 4
     css: style.css
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -33,28 +35,90 @@ Description: This workshop will extend your understanding of R and cover how to 
 
 Learning objectives:
 
-- data structures
-    - homogenous structures
-        - vectors
-        - matrix
-    - heterogenous structures
-        - lists
-        - data.frame/tibble
-- create functions
-- create loops
-- creating/running scripts
+- Understand the creation and subsetting of specific data structures
+- Understand how to create functions
+- Understand how to create loops
+- Understand how to create and run an script
 
+This workshop will follow an explaination then try for yourself using exercises format
+
+Motivation: Many frustrations of dealing with R stem from not understanding how R is working 'under-the-hood'. We want to explain some of the details that get skipped as part of introductory courses so that you understand what is going on and how to delve into some of the oddities. We also want to show you how to start being able to implement solutions in R to tackle your specific problems.
+
+## Atomics
+
+This chapter is useful for additional information: https://adv-r.hadley.nz/vectors-chap.html
+
+4 main types of atomic vectors
+
+- double
+- integer
+- logical
+- character
+
+_Double_ and _integer_ are collectively known as _numeric_ vectors.
+
+Using `c()` to combine. `c()` is used to combine atomic vectors together, and when the arguments are all atomic vectors it flattens the structure
+
+```{r}
+chr_vec <- c("a", "b")
+chr_vec
+
+c(chr_vec, c(chr_vec, chr_vec))
+```
+We can use `typeof` to find out the atomic type of our vectors
+
+```{r}
+typeof(chr_vec)
+```
+
+
+### Empty vectors
+
+We can create empty vectors of specific lengths using the atomic types
+
+```{r}
+double(length = 2)
+numeric(length = 3)
+character(3)
+logical(2)
+double(0)
+```
+
+### Coercion
+
+All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be coerced to the most flexible type. Types from least to most flexible are: 
+logical -> integer -> double -> character.
+
+We can explicitly use coercion on vectors with the `as.numeric`, `as.character`, and `as.logical` functions.
+
+<div class='exercise'>
+### Exercise
+
+Create the following vectors:
+
+1. four numbers as a numeric called `my_nums`
+2. six words of your choice as a character called `my_words`
+3. an empty numeric vector of length 7 called `num_results`.
+4. an empty character vector of length 3 called `char_results`.
+5. combine the `my_nums` and `my_words` vectors into a single vector called `nums_words`
+  - what type is this new vector?
+
+What do you notice are the values in the empty numeric and character vectors?
+
+</div>
 
 ## Data structures
 
-Heavy reliance on content in http://adv-r.had.co.nz/Data-structures.html
+This section is complimented by http://adv-r.had.co.nz/Data-structures.html for a more in depth understanding and explanation.
 
 
 ### Structures
 
+In R there are two types of data structure, one for the storage of homogenous data i.e. the data has to be all of the same _type_ such as _numeric_. The other is for the storage of heterogenous data i.e. the data can be of different types.
+
+The main structures for homogenous data are the 1 dimensional vector, and the 2d matrix. Fo a matrix it has the requirement to have either all columns of equal length, and all rows of equal length.
 
 
-Homogenous: vector, matrix
 
 ```{r}
 example_vector <- c(1,2,5,6)
@@ -65,12 +129,22 @@ example_matrix
 ```
 
 
-Heterogenous: list, data.frame (tibble), data.table(?)
+The main heterogenous structures are the list and the data.frame (and tibble). A list is a series of elements and each can be of different data types and dimensions. It is a very versatile structure. A data.frame is a list of variables, with the same number of rows. Character vectors are converted to factors (from R v4+ this is no longer the default behaviour). A tibble is a special type of data.frame with a priority on printing and inspection and comes from the `tibble` package which is part of the `tidyverse`.
 
 
 ```{r}
 example_list <- list(1:3, "a", c(TRUE, FALSE, TRUE), c(2.3, 5.9))
 example_list
+
+example_df <- data.frame(col1 = c("a", "b", "c"), 
+                         col2 = c(1, 2, 3), 
+                         col3 = c(TRUE, FALSE, FALSE) )
+example_df
+
+example_tib <- tibble::tibble(col1 = c("a", "b", "c"), 
+                              col2 = c(1, 2, 3),
+                              col3 = c(TRUE, FALSE, FALSE) )
+example_tib
 ```
 
 
@@ -95,28 +169,16 @@ attributes(mtcars)
 
 
 
-### Atomics
-
-- numeric
-- logical
-- character
-
-Coercion
-
-All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be coerced to the most flexible type. Types from least to most flexible are: 
-logical -> integer -> double -> character.
-
 
 
 ### Subsetting
 
 http://adv-r.had.co.nz/Subsetting.html
 
-Subsetting operators:
+Subsetting operators: `[`, `[[`, and `$`
 
-`[` versus `[[` versus `$`
+We'll look at the differences between these operators later.
 
-`[`
 
 
 There are two main methods of subsetting in R, the first is by specifying the numbered positions (index) from the data structure we have. The second is by providing a logical vector - usually created through a conditional statement.
@@ -159,11 +221,31 @@ my_vec[c(TRUE, FALSE, FALSE, TRUE)]
 my_vec[c(TRUE, FALSE)]
 ```
 
-#### Positional
+#### Positional/Index
 
+The element positions/indexes can be used to perform subsetting. The indexes in R start from 1, unlike many other programming languages.
 
+A negative in-front of the index means to remove that entry but you can't mix negative and positive indexes in the same command.
 
+The index zero returns a zero length vector of the vector atomic type. Using an empty `[]` will return the entire vector. Specifying an index multiple times will duplicate the element. 
 
+```{r}
+my_vec
+
+my_vec[1]
+
+my_vec[-1]
+
+my_vec[c(-2, -4)]
+
+my_vec[c(4,4,4)]
+
+my_vec[0]
+
+my_vec[]
+
+`[`(my_vec, 3)
+```
 
 
 
@@ -175,9 +257,97 @@ example_list[[c(1,2)]]
 
 example_list[c(1,2)]
 ```
-## Exercises
+
+#### Differences in subset operators
+
+`[` (single square bracket) versus `[[` (double square bracket) versus `$` (dollar sign)
+
+`[` will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the `[` for 1 dimensional structures. Be careful when subsetting factors. For 2 dimensional structures the format is [row indexes, column indexes] for indexes or [condtion to select rows, condition to select columns] for the conditional based subsetting. 
+
+Data.frame
+
+```{r}
+my_df <- data.frame(column1 = 1:3, numbers = 4:6)
+my_df
+str(my_df[1,1])
+str(my_df[1,])
+str(my_df[,1])
+str(my_df[,"numbers"])
+str(my_df[1,1, drop = FALSE])
+```
+
+Tibble
+
+```{r}
+my_tib <- tibble::tibble(col1 = 1:3, col2 = 4:6)
+my_tib
+str(my_tib[1,1])
+str(my_tib[1,])
+str(my_tib[,1])
+str(my_tib[,"col2"])
+str(my_tib[1,1, drop = FALSE])
+```
+
+Matrix
+
+```{r}
+my_mat <- matrix(1:4, nrow = 2, ncol =2)
+my_mat
+str(my_mat[1,1])
+str(my_mat[1,])
+str(my_mat[,1])
+str(my_mat[1,1, drop = FALSE])
+```
+
+List
+
+```{r}
+my_list <- list(item1 = "a", item2 = 2, item3 = TRUE)
+my_list
+str(my_list[1])
+str(my_list["item1"])
+
+```
 
 
+
+`[[` will return elements as a vector and for 2 dimensional structures refers to the columns of the object.
+
+```{r}
+str(my_df[[1]])
+str(my_df[["numbers"]])
+str(my_tib[[1]])
+str(my_tib[["col2"]])
+str(my_mat[[1]])
+str(my_list$item1)
+```
+
+
+`$` is used for subsetting using a name (but not on a vector), but it also does partial matching
+
+```{r, warning=TRUE}
+my_df <- data.frame(column1 = 1:3, numbers = 4:6)
+
+str(my_df$column1)
+
+str(my_df$c)
+```
+
+
+
+
+<div class='exercise'>
+#### Exercises
+
+Using the starwars data (`dplyr::starwars`):
+
+- Find all of the characters that are droids, and create a subset of the data with only their names, and heights.
+- Create a variable called `luke_films` and assign to it the list of films that Luke Skywalker was in.
+- Create a variable called `films` and assign it the entire contents of the `starwars$films` column using `[[`
+    - Then name the list elements with the names of the characters they came from.
+- What is the third starship of Obi-Wan Kenobi?
+
+</div>
 
 
 ## Functions
@@ -242,7 +412,7 @@ data_usa <- read_csv("gapminder_countries/usa.csv")
 # calculate the mean gdp from each country
 mean(data_nzl$gdp)
 mean(data_aus$gdp)
-mean(data_usa$gsp)
+mean(data_usa$gdp)
 ```
 
 Notice that there is a lot of code duplication (`read_csv`, and `mean` are duplicated for each country).  In this example there is also the inclusion of a typo which is a very common mistake to make when changing inputs after copy and pasting - did you spot it? What happens if we need include another 20 or 100 countries? What happens if we also needed to calculate the median GDP for each? It quickly becomes quite laborious to scale. This is where iteration is useful, as it is all about providing a mechanism to specify how to repeat things.
@@ -259,6 +429,7 @@ This abstraction of the problem now gives us the steps to follow and deals with 
 
 
 ### The `for` Loop
+
 
 #### Palmer Penguins Dataset
 We are going to use the [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/) dataset with our `for` loops. A set of Phenotypes from 3 Species and 3 Islands put together by Alison Horst
