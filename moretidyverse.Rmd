@@ -44,7 +44,10 @@ Learning objectives
 > -  https://www.tidyverse.org
 
 
-https://rstudio-education.github.io/tidyverse-cookbook/index.html
+
+Two excellent resources:
+- [R for Data Science](https://r4ds.had.co.nz)
+- [Tidyverse Cookbook](https://rstudio-education.github.io/tidyverse-cookbook/index.html)
 
 ## Core Tidyverse
 
@@ -98,11 +101,11 @@ knitr::include_graphics("images/dplyr.png")
  
 `dplyr::transmute` is similar to `dplyr::mutate` except only columns specified are kept.
 
-`dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with` are useful helper functions to enable easy selection of columns.
+`dplyr::everything`/`dplyr::starts_with`/`dplyr::contains`/`dplyr::ends_with` are useful helper functions to enable easy selection of columns. These functions technically live in the `tidyselect` package, along with `tidyselect::where`. `tidyselect::where` can be used to supply a conditional type function such as `is.numeric` to enable the selection of columns.
 
 `dplyr::relocate` is a very useful function that enables you to relocate columns to specific locations. It uses a `.before` or `.after` argument to specify where you to more the column(s) to.
 
-`dplyr::across` lets you apply a function or functions across multiple columns. This is usually used in conjunction with `dplyr::summarise` or `dplyr::mutate`.
+`dplyr::across` lets you apply a function or functions across multiple columns. For applying a function based on data type, pair with `tidyselect::where`. This is usually used as part of a `dplyr::summarise` or `dplyr::mutate` statement.
 
 `dplyr::c_across` lets you combine values from across multiple columns, such as performing a summarising function on select columns.
 
@@ -110,6 +113,8 @@ knitr::include_graphics("images/dplyr.png")
 
 <div class='exercise'>
 #### Exercise
+
+- Using the `dplyr::starwars` dataset, calculate the mean across all numeric columns for each species.
 
 
 </div>
@@ -155,13 +160,16 @@ dplyr::starwars
 knitr::include_graphics("images/stringr.png")
 ```
 
-- `stringr::str_detect`
-- `stringr::str_remove`
-- `stringr::str_extract`
+`stringr::str_detect` lets you use regular expressions or straight text to check to see if it is in any of the values of a column and returns a logical vector. This function is very useful to use as part of a `dplyr::filter`.
+
+`stringr::str_remove` will remove the first instance of the text that matches the pattern from the values in your column, `stringr::str_remove_all` will remove all instances.
+
+`stringr::str_extract` does the opposite of `stringr::str_remove`, in that it returns the first instance of the text that matches the pattern, `stringr::str_extract_all` will return all instances of the matches.
 
 <div class='exercise'>
 #### Exercise
 
+From the dplyr::starwars data, find all of the characters that have 'grey' as part of their skin colour description. How many different descriptions are there that contain 'grey'?
 
 </div>
 
@@ -183,11 +191,6 @@ readr::parse_number(text_to_parse)
 ```
 
 
-<div class='exercise'>
-#### Exercise
-
-
-</div>
 
 ### [ggplot2](https://ggplot2.tidyverse.org)
 
@@ -277,20 +280,8 @@ penguins %>%
 knitr::include_graphics("images/purrr.png")
 ```
 
-- `purrr::map`
-- `purrr::walk`
-- `purrr::transpose`
-- `purrr::keep`/`purrr::discard`/`purrr::pluck`
+We'll cover `purrr` in [Functional Programming](#functional-programming)
 
-
-<div class='exercise'>
-#### Exercise
-
-
-
-
-
-</div>
 
 
 ## Extra Tidyverse
@@ -300,7 +291,7 @@ knitr::include_graphics("images/purrr.png")
 ```{r, eval = FALSE}
 library(googlesheets4)
 
-# grab the url from the browser for your sheet
+# grab the url from the browser for your sheet (specific to a sheet)
 url <- "https://docs.google.com/spreadsheets/d/1MbE2_XUfQ9KwfKAJhEDPb6KgOg2EaoXr5IN2F-hjBNI/edit#gid=0"
 
 # read the sheet in
@@ -322,4 +313,79 @@ The first time running `read_sheet` you will be asked to authenticate and a web 
 - dtplyr
 - dbplyr
 
+
+# Functional Programming
+
+## Map
+
+From the package `purrr` (part of the tidyverse), there are a collection of `map` functions which are a method of iterating over a collection of things applying a function. This is known as _functional programming_, and allows us to extract the code that is in common for a loop, into a function, so rather than being concerned about the set-up of the loop, we can focus on the contents of the loop. This idea of mapping a function onto data is extremely similar to the concept underlying the `for` loop.
+
+### Map and friends
+
+The package `purrr` within the tidyverse provides the `map` functions that take a vector or list as the first argument, and the second argument is the function to be run on each item in the vector or list. The object that is returned back with the results depends on the exact version of `map` that is called, the default `map()` returns the results as items in a list, but there are suffix versions of `map` that will return the results back in a specified data type.
+
+- `map()` makes a list.
+- `map_lgl()` makes a logical vector.
+- `map_int()` makes an integer vector.
+- `map_dbl()` makes a double vector.
+- `map_chr()` makes a character vector.
+
+These suffix versions will give an error if the data type of the results doesn't match. This is useful for being able to program with, as it means that you can be sure that you have a particular data type for future code. Some of the base R functions that you will meet in the next section don't provide this guarantee. The arguments to the `map` functions are `.x` which is the vector or list input, and `.f` which is the name of the function. if the supplied function takes multiple arguments these can be passed in as extra arguments to `map`.
+
+We could use the example of converting some temperatures to demonstrate
+
+```{r}
+library(purrr)
+
+farenheit_to_celcius <- function(temp_f){
+  temp_c <- (temp_f -32) * 5/9
+  return(temp_c)
+}
+
+my_temps_f <- c(90, 78, 88, 89, 77)
+
+# gives back a list
+my_temps_c_list <- map(.x = my_temps_f, .f = farenheit_to_celcius)
+my_temps_c_list
+
+# gives back a vector of type numeric/double
+my_temps_c_dbl <- map_dbl(.x = my_temps_f, .f = farenheit_to_celcius)
+my_temps_c_dbl
+```
+
+When using `map` and variants, don't include the `()`'s on the function name, if you do you'll get this error:
+
+```{r, error = TRUE}
+map(.x = my_temps_f, .f = farenheit_to_celcius())
+```
+
+### Using a formula
+
+You can create anonymous functions for `purrr` to use.
+
+For instance, what if you had a list containing multiple weeks of temperatures and you wanted to find the mean temp per week.
+
+```{r}
+monthly_temps <- list(week1 = c(20,21,23,NA), 
+                      week2 = c(15,16,14,17,20), 
+                      week3 = c(17,15,NA,17,18,14))
+
+map(monthly_temps, mean)
+
+```
+Because we have `NA`s mean returns `NA`. We could define a new version of `mean` that removes `NA`s
+
+```{r}
+mean_na_rm <- function(x){
+  mean(x, na.rm = TRUE)
+}
+
+map(monthly_temps, mean_na_rm)
+
+```
+But we can also use the formula syntax to create an anonymous function using the `~`, and with the similar idea as `.` for data in pipes, we use `.x` to represent the data in our function.
+
+```{r}
+map(monthly_temps, ~mean(.x, na.rm = TRUE))
+```
 
