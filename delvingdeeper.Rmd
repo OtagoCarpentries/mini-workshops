@@ -525,6 +525,8 @@ for( i in seq_along(myNumbers) ){
 }
 ```
 
+
+<div class='exercise'>
 #### Exercise
 Using indices, calculate the mean of the 2nd, 3rd and 5th Columns
 
@@ -538,7 +540,7 @@ for (i in myIndex) {
   print(paste("Mean", colnames(penguins)[i],"=", mean(penguins[,i], na.rm = T),2))
 }
 ```
-
+</div>
 
 ### Nesting of loops
 
