@@ -109,7 +109,7 @@ What do you notice are the values in the empty numeric and character vectors?
 
 ## Data structures
 
-This section is complimented by http://adv-r.had.co.nz/Data-structures.html for a more in depth understanding and explanation.
+This section is complimented by https://adv-r.hadley.nz/vectors-chap.html for a more in depth understanding and explanation.
 
 
 ### Structures
@@ -173,7 +173,7 @@ attributes(mtcars)
 
 ### Subsetting
 
-http://adv-r.had.co.nz/Subsetting.html
+https://adv-r.hadley.nz/subsetting.html
 
 Subsetting operators: `[`, `[[`, and `$`
 
