@@ -175,9 +175,7 @@ http://adv-r.had.co.nz/Subsetting.html
 
 Subsetting operators:
 
-`[` versus `[[` versus `$`
 
-`[`
 
 
 There are two main methods of subsetting in R, the first is by specifying the numbered positions (index) from the data structure we have. The second is by providing a logical vector - usually created through a conditional statement.
@@ -256,9 +254,93 @@ example_list[[c(1,2)]]
 
 example_list[c(1,2)]
 ```
+
+#### Differences in subset operators
+
+`[` (single square bracket) versus `[[` (double square bracket) versus `$` (dollar sign)
+
+`[` will depending on the data structure either return the original structure, or reduce the dimensions of the returned structure. Use the `[` for 1 dimensional structures. Be careful when subsetting factors.
+
+Data.frame
+
+```{r}
+my_df <- data.frame(column1 = 1:3, numbers = 4:6)
+my_df
+str(my_df[1,1])
+str(my_df[1,])
+str(my_df[,1])
+str(my_df[,"numbers"])
+str(my_df[1,1, drop = FALSE])
+```
+
+Tibble
+
+```{r}
+my_tib <- tibble::tibble(col1 = 1:3, col2 = 4:6)
+my_tib
+str(my_tib[1,1])
+str(my_tib[1,])
+str(my_tib[,1])
+str(my_tib[,"col2"])
+str(my_tib[1,1, drop = FALSE])
+```
+
+Matrix
+
+```{r}
+my_mat <- matrix(1:4, nrow = 2, ncol =2)
+my_mat
+str(my_mat[1,1])
+str(my_mat[1,])
+str(my_mat[,1])
+str(my_mat[1,1, drop = FALSE])
+```
+
+List
+
+```{r}
+my_list <- list(item1 = "a", item2 = 2, item3 = TRUE)
+my_list
+str(my_list[1])
+str(my_list["item1"])
+
+```
+
+
+
+`[[` will return elements as a vector and for 2 dimensional structures refers to the columns of the object.
+
+```{r}
+str(my_df[[1]])
+str(my_df[["numbers"]])
+str(my_tib[[1]])
+str(my_tib[["col2"]])
+str(my_mat[[1]])
+str(my_list$item1)
+```
+
+
+`$` is used for subsetting using a name (but not on a vector), but it also does partial matching
+
+```{r, warning=TRUE}
+my_df <- data.frame(column1 = 1:3, numbers = 4:6)
+
+str(my_df$column1)
+
+str(my_df$c)
+```
+
+
+
+
 <div class='exercise'>
 #### Exercises
 
+Using the starwars data (`dplyr::starwars`):
+
+- Find
+- Create a variable called `luke_films` and assign the list of films that Luke Skywalker was in to it
+- Create a variable called `films` and assign it the entire contents of the `starwars$films` column using `[[`
 
 </div>
 
