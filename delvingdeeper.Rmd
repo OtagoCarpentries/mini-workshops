@@ -355,7 +355,7 @@ for( i in seq_along(myNumbers) ){
 ```
 
 #### Exercise
-Using indices, caluclate the mean of the 2nd, 3rd and 5th Columns
+Using indices, calculate the mean of the 2nd, 3rd and 5th Columns
 
 ```{r indicesloop, eval = F, echo = F}
 # selection index
@@ -372,5 +372,30 @@ for (i in myIndex) {
 ### Nesting of loops
 
 It's generally recommended to avoid the nesting of loops within other loops. Let's say the outer loop has a total of `n` iterations to get through and an inner loop has `m`. Every time we add one extra iteration of the outer loop we end up adding an extra `m` iterations of the inner loop, so the total number of iterations is `n * m`. Depending on how big `m` is, this could be adding thousands or millions of extra iterations, causing your code to take longer to run. Some times however, nesting is unavoidable but it's a good idea to keep an eye out for nesting if your code is taking a while to run as this is usually the first place things can be sped up.
+
+```{r nested}
+sex <- c("female", "male")
+#species <- c("Adelie","Chinstrap","Gentoo" )
+species <- levels(penguins$species)
+
+for (i in species) {
+  for (j in sex) {
+    
+    # actions
+    # subset the data
+    new_data <- subset(penguins, penguins$species == i & penguins$sex == j) 
+    
+    # calculate something
+    mean_value <- mean(new_data$body_mass_g, na.rm = T)
+    
+    # return a value
+    print(paste("The Average weight of",j,i,"penguins =",round(mean_value/1000,2),"Kgs"))
+    
+  }
+  
+}
+```
+
+
 
 ## Running Scripts
