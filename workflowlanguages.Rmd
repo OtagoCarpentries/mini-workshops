@@ -36,6 +36,10 @@ Learning objectives
 - Use Snakemake wildcards to simplify our rules
 
 
+Setup:
+
+Because it can take a few minutes to install we'll begin by starting the setup process for Snakemake. Please follow the instructions at https://carpentries-incubator.github.io/workflows-snakemake/setup.html
+
 # Workflow languages
 
 ## What is a workflow language
@@ -74,6 +78,11 @@ What aspects of the analysis are not affected by change in environment
 
 There are different solutions for each level or the reproducibility problem and each adds an extra level of overhead
 
+Commonalities:
+
+- Define 'jobs'
+- Define the inputs for a job
+- Define the outputs from a job
 
 ## Common workflow language
 
@@ -86,17 +95,73 @@ There are different solutions for each level or the reproducibility problem and 
 > https://www.nextflow.io
 
 
+Example:
+
+```
+#!/usr/bin/env nextflow
+ 
+params.in = "$baseDir/data/sample.fa"
+ 
+/*
+ * split a fasta file in multiple files
+ */
+process splitSequences {
+ 
+    input:
+    path 'input.fa' from params.in
+ 
+    output:
+    path 'seq_*' into records
+ 
+    """
+    awk '/^>/{f="seq_"++d} {print > f}' < input.fa
+    """
+}
+ 
+/*
+ * Simple reverse the sequences
+ */
+process reverse {
+ 
+    input:
+    path x from records
+     
+    output:
+    stdout into result
+ 
+    """
+    cat $x | rev
+    """
+}
+ 
+/*
+ * print the channel content
+ */
+result.subscribe { println it }
+```
+
 ## Snakemake
 
 > The Snakemake workflow management system is a tool to create reproducible and scalable data analyses. Workflows are described via a human readable, Python based language. They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition. Finally, Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment.
 > https://snakemake.readthedocs.io/en/stable/
 
+Example:
+
+```
+rule bwa_map:
+    input:
+        "data/genome.fa",
+        "data/samples/A.fastq"
+    output:
+        "mapped_reads/A.bam"
+    shell:
+        "bwa mem {input} | samtools view -Sb - > {output}"
+```
 
 ## Example snakemake workflow
 
 We'll now work through the following lessons from this workshop https://carpentries-incubator.github.io/workflows-snakemake/index.html
 
-- Setup
 - Manual Data Processing workflow
 - Snakefiles
 - Wildcards

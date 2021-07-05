@@ -2139,6 +2139,8 @@ Workshops
 <li>Run Snakemake from the shell</li>
 <li>Use Snakemake wildcards to simplify our rules</li>
 </ul>
+<p>Setup:</p>
+<p>Because it can take a few minutes to install we’ll begin by starting the setup process for Snakemake. Please follow the instructions at <a href="https://carpentries-incubator.github.io/workflows-snakemake/setup.html" class="uri">https://carpentries-incubator.github.io/workflows-snakemake/setup.html</a></p>
 <h1 id="workflow-languages">Workflow languages</h1>
 <h2 id="what-is-a-workflow-language">What is a workflow language</h2>
 <p>Workflows describe the series of steps that need to be performed in order to accomplish a task. A workflow language provides a syntax for us to describe a process and how it relates to other processes.</p>
@@ -2169,6 +2171,12 @@ Workshops
 <li>Is the environment the program is run in the same? (think operating system)</li>
 </ul>
 <p>There are different solutions for each level or the reproducibility problem and each adds an extra level of overhead</p>
+<p>Commonalities:</p>
+<ul>
+<li>Define ‘jobs’</li>
+<li>Define the inputs for a job</li>
+<li>Define the outputs from a job</li>
+</ul>
 <h2 id="common-workflow-language">Common workflow language</h2>
 <blockquote>
 <p>The Common Workflow Language (CWL) is a standard for describing computational data-analysis workflows. Development of CWL is focused particularly on serving the data-intensive sciences, such as Bioinformatics, Medical Imaging, Astronomy, Physics, and Chemistry. A key goal of the CWL is to allow the creation of a workflow that is portable and thus may be run reproducibly in different computational environments. <a href="https://en.wikipedia.org/wiki/Common_Workflow_Language" class="uri">https://en.wikipedia.org/wiki/Common_Workflow_Language</a></p>
@@ -2177,19 +2185,68 @@ Workshops
 <blockquote>
 <p>Nextflow enables scalable and reproducible scientific workflows using software containers. It allows the adaptation of pipelines written in the most common scripting languages. <a href="https://www.nextflow.io" class="uri">https://www.nextflow.io</a></p>
 </blockquote>
+<p>Example:</p>
+<pre><code>#!/usr/bin/env nextflow
+ 
+params.in = &quot;$baseDir/data/sample.fa&quot;
+ 
+/*
+ * split a fasta file in multiple files
+ */
+process splitSequences {
+ 
+    input:
+    path &#39;input.fa&#39; from params.in
+ 
+    output:
+    path &#39;seq_*&#39; into records
+ 
+    &quot;&quot;&quot;
+    awk &#39;/^&gt;/{f=&quot;seq_&quot;++d} {print &gt; f}&#39; &lt; input.fa
+    &quot;&quot;&quot;
+}
+ 
+/*
+ * Simple reverse the sequences
+ */
+process reverse {
+ 
+    input:
+    path x from records
+     
+    output:
+    stdout into result
+ 
+    &quot;&quot;&quot;
+    cat $x | rev
+    &quot;&quot;&quot;
+}
+ 
+/*
+ * print the channel content
+ */
+result.subscribe { println it }</code></pre>
 <h2 id="snakemake">Snakemake</h2>
 <blockquote>
 <p>The Snakemake workflow management system is a tool to create reproducible and scalable data analyses. Workflows are described via a human readable, Python based language. They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition. Finally, Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment. <a href="https://snakemake.readthedocs.io/en/stable/" class="uri">https://snakemake.readthedocs.io/en/stable/</a></p>
 </blockquote>
+<p>Example:</p>
+<pre><code>rule bwa_map:
+    input:
+        &quot;data/genome.fa&quot;,
+        &quot;data/samples/A.fastq&quot;
+    output:
+        &quot;mapped_reads/A.bam&quot;
+    shell:
+        &quot;bwa mem {input} | samtools view -Sb - &gt; {output}&quot;</code></pre>
 <h2 id="example-snakemake-workflow">Example snakemake workflow</h2>
 <p>We’ll now work through the following lessons from this workshop <a href="https://carpentries-incubator.github.io/workflows-snakemake/index.html" class="uri">https://carpentries-incubator.github.io/workflows-snakemake/index.html</a></p>
 <ul>
-<li>Setup</li>
 <li>Manual Data Processing workflow</li>
 <li>Snakefiles</li>
 <li>Wildcards</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

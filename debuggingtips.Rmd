@@ -47,6 +47,16 @@ knitr::include_graphics("images/debugging/effective_techniques.png")
 ```
 
 
+Rubber Duck debugging
+
+```{r, echo = FALSE, out.width = '200%', out.height = '200%'}
+knitr::include_graphics("images/debugging/rubberduck.jpg")
+```
+
+
+
+## General process
+
 My general process focuses on the initial source of the error and then starts to work backwards in command history.
 
 1. Do I recognise the message?
