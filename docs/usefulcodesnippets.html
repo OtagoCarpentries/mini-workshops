@@ -2919,6 +2919,19 @@ Valiant
 </div>
 <h2 id="workflow-advice">Workflow advice</h2>
 <ul>
+<li>Rprojects</li>
+</ul>
+<p>Read in a directory of files</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"*.csv"</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>my_csvs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>files</span>, <span class='va'>read_csv</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
 <li><code>here</code></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -2950,19 +2963,6 @@ Valiant
 <span class='fu'><a href='https://usethis.r-lib.org/reference/create_package.html'>create_project</a></span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"path/to/new/project"</span><span class='op'>)</span> <span class='co'># creates a new rstudio project and opens it</span>
 <span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"new_r_script"</span><span class='op'>)</span> <span class='co'># creates a new script with the name provided</span>
 <span class='fu'><a href='https://usethis.r-lib.org/reference/edit.html'>edit_r_profile</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># opens your Rprofile so you can edit it</span>
-</code></pre>
-</div>
-</div>
-<ul>
-<li>Rprojects</li>
-</ul>
-<p>Read in a directory of files</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"*.csv"</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='va'>my_csvs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>files</span>, <span class='va'>read_csv</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -5404,12 +5404,6 @@ Volvo 142E
 </code></pre>
 </div>
 <pre><code>[1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://haozhu233.github.io/kableExtra/'>kableExtra</a></span><span class='op'>)</span>
-</code></pre>
-</div>
 </div>
 <h1 id="bash">Bash</h1>
 <h2 id="configuration">Configuration</h2>

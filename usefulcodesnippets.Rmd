@@ -179,6 +179,19 @@ mtcars %>%
 
 ## Workflow advice
 
+- Rprojects
+
+
+Read in a directory of files
+
+```{r, eval = FALSE}
+library(tidyverse)
+files <- list.files(pattern = "*.csv", full.names = TRUE)
+
+my_csvs <- map(files, read_csv)
+
+```
+
 - `here`
 
 ```{r, eval = FALSE}
@@ -209,18 +222,7 @@ edit_r_profile() # opens your Rprofile so you can edit it
 ```
 
 
-- Rprojects
 
-
-Read in a directory of files
-
-```{r, eval = FALSE}
-library(tidyverse)
-files <- list.files(pattern = "*.csv", full.names = TRUE)
-
-my_csvs <- map(files, read_csv)
-
-```
 
 
 quickly find out the number of blank entries in a column:
@@ -291,9 +293,7 @@ purr::map_chr(stringr::str_split(string_vec, "pattern"), n)
 purrr::map_chr(stringr::str_split(c("chr1","chr2","chr3"), "chr"), 2) # you would get back c("1","2","3")
 ```
 
-```{r, eval = FALSE}
-library(kableExtra)
-```
+
 
 
 
