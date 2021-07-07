@@ -48,7 +48,7 @@ Useful keyboard shortcuts:
 
 
 ```{r, eval = FALSE}
-<- 
+
 # Load helper packages if using interactive session (doesn't alter your environment)
 # Don't add 'analysis' packages here
 if (interactive()) {
@@ -88,7 +88,7 @@ The first code chunk sets my default of echoing all of my code. The second will 
 ---
 title: a cool title
 author: Murray Cadzow
-date: `r knitr::inline_expr("Sys.Date()")` 
+date: "`r knitr::inline_expr("Sys.Date()")` "
 output:
   html_document:
     toc: true
@@ -102,7 +102,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}`r ''`
-library(tidyverse, quietly = TRUE)
+suppressMessages(library(tidyverse))
 ```
 
 ````
@@ -138,7 +138,8 @@ In rmd the code chunk `eval` option takes more than just `TRUE` or `FALSE` - if 
 Sometimes, such as in the creation of this workshop, there is a need to show the code chunk verbatim.  There is a section in the rmarkdown book about this and is extremely useful - 
 [https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html](https://bookdown.org/yihui/rmarkdown-cookbook/verbatim-code-chunks.html)
 
-To create verbatim code chunks, add `r knitr::inline_expr(" ''")`
+To create verbatim code chunks, add `` `r knitr::inline_expr(" ''")`  `` after the `{r}` part of the code chunk.
+
 
 
 ### Making better tables
@@ -170,7 +171,7 @@ mtcars %>%
   select(1:4) %>% 
   head() %>% 
   kbl(caption = "A table caption", 
-        col.names = c("MPG", "Cylinders", "Displacement","Horse Power")) %>% 
+      col.names = c("MPG", "Cylinders", "Displacement","Horse Power")) %>% 
   row_spec(0, angle = -45) %>% 
   kable_styling(bootstrap_options = "striped")
 ```
@@ -266,7 +267,10 @@ format **all** numeric columns to 3 decimal places and make into a table
 
 ```{r}
 library(tidyverse)
- mtcars %>% mutate(across(where(is.numeric), list(~sprintf('%.3f', .) ) )) %>% kableExtra::kbl()
+mtcars %>% 
+  head() %>% 
+  mutate(across(where(is.numeric), list(~sprintf('%.3f', .) ) )) %>% 
+  kableExtra::kbl()
 ```
 
 
@@ -276,6 +280,7 @@ library(tidyverse)
 ```{r}
 
 mtcars %>%
+  head() %>% 
   tibble::rownames_to_column() %>% # may or may not be needed
   tidyr::pivot_longer(-rowname,
                       names_to = "var", 
